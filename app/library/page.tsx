@@ -321,7 +321,7 @@ function LibraryContent() {
                       title={story.title}
                       coverEmoji={story.coverEmoji}
                       theme={story.theme}
-                      readingTime={story.readingTime}
+                      readingTime={story.readingTimeMinutes}
                       isPremium={story.isPremium}
                       isFavorite={us?.is_favorite}
                       childName={activeChild?.name}
