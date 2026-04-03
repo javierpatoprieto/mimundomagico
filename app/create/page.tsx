@@ -447,6 +447,7 @@ export default function CreatePage() {
           // legacy shape also included for compatibility
           name: params.childName,
           age: childProfiles.find((c) => c.id === selectedChildId)?.age ?? 4,
+          theme: params.adventure || params.scenario || params.childMood || 'aventura',
         }),
       })
       const data = await res.json()
