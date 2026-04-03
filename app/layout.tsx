@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Nunito } from 'next/font/google'
 import './globals.css'
 import { DemoBanner } from '@/components/DemoBanner'
+import { CookieBanner } from '@/components/CookieBanner'
 
 const nunito = Nunito({
   subsets: ['latin'],
@@ -42,6 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="es" className={nunito.variable}>
       <body className="bg-white text-gray-900 antialiased">
         <DemoBanner />
+        <CookieBanner />
         {children}
       </body>
     </html>
