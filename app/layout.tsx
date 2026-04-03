@@ -1,0 +1,35 @@
+import type { Metadata } from 'next'
+import { Nunito } from 'next/font/google'
+import './globals.css'
+import { DemoBanner } from '@/components/DemoBanner'
+
+const nunito = Nunito({
+  subsets: ['latin'],
+  weight: ['400', '600', '700', '800', '900'],
+  variable: '--font-nunito',
+  display: 'swap',
+})
+
+export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? 'https://mimundomagico.app'),
+  title: 'Mi Mundo Mágico — Cuentos personalizados para tus hijos',
+  description:
+    'El cuento donde tu hijo/a es el héroe. Cuentos clásicos personalizados y cuentos únicos creados especialmente para ellos.',
+  keywords: ['cuentos infantiles', 'cuentos personalizados', 'historias para niños', 'bedtime stories'],
+  openGraph: {
+    title: 'Mi Mundo Mágico',
+    description: 'El cuento donde tu hijo/a es el héroe ✨',
+    images: ['/og-image.png'],
+  },
+}
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="es" className={nunito.variable}>
+      <body className="bg-white text-gray-900 antialiased">
+        <DemoBanner />
+        {children}
+      </body>
+    </html>
+  )
+}
