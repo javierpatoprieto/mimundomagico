@@ -17,7 +17,22 @@ export const CLASSIC_STORIES = [
 ]
 
 export type StoryTemplate = typeof caperucitaRoja
-export type ClassicStory = StoryTemplate
+export type ClassicStory = {
+  id: string
+  slug: string
+  title: string
+  coverEmoji: string
+  theme: string
+  isPremium: boolean
+  description?: string
+  readingTime?: number
+  readingTimeMinutes?: number
+  template: string
+  ageMin?: number
+  ageMax?: number
+  illustrationSlug?: string
+  tags?: string[]
+}
 
 export function personalizeStory(template: string, childName: string): string {
   return template.replace(/\{childName\}/g, childName)

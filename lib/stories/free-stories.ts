@@ -1,87 +1,87 @@
-import type { ClassicStory } from './index'
+﻿import type { ClassicStory } from './index'
 
 export const musicos_bremen: ClassicStory = {
   id: 'musicos-bremen',
   slug: 'musicos-bremen',
-  title: '{childName} y los Músicos de Bremen',
-  content: `Érase una vez un burro viejo llamado Ruco que ya no podía cargar sacos pesados. Su amo quería deshacerse de él, pero Ruco tenía un plan: ¡iría a Bremen a ser músico! 🎺
+  title: '{childName} y los MÃºsicos de Bremen',
+  template: `Ã‰rase una vez un burro viejo llamado Ruco que ya no podÃ­a cargar sacos pesados. Su amo querÃ­a deshacerse de Ã©l, pero Ruco tenÃ­a un plan: Â¡irÃ­a a Bremen a ser mÃºsico! ðŸŽº
 
-Por el camino se encontró con un perro llamado Bruno, que ya no podía correr tras los conejos.
-—¿A dónde vas, amigo? —preguntó Bruno.
-—¡A Bremen, a hacer música! —respondió Ruco—. ¿Te vienes?
+Por el camino se encontrÃ³ con un perro llamado Bruno, que ya no podÃ­a correr tras los conejos.
+â€”Â¿A dÃ³nde vas, amigo? â€”preguntÃ³ Bruno.
+â€”Â¡A Bremen, a hacer mÃºsica! â€”respondiÃ³ Rucoâ€”. Â¿Te vienes?
 
-Más adelante, un gato llamado Miau se unió a ellos, seguido de un gallo muy rojo que cantaba fuera de tono pero con mucha alegría.
+MÃ¡s adelante, un gato llamado Miau se uniÃ³ a ellos, seguido de un gallo muy rojo que cantaba fuera de tono pero con mucha alegrÃ­a.
 
-Los cuatro amigos caminaron y caminaron hasta que cayó la noche. En el bosque, vieron una casita iluminada.
-—¡Ahí dentro hay ladrones! —susurró Miau.
+Los cuatro amigos caminaron y caminaron hasta que cayÃ³ la noche. En el bosque, vieron una casita iluminada.
+â€”Â¡AhÃ­ dentro hay ladrones! â€”susurrÃ³ Miau.
 
-{childName} aparecía a su lado justamente en ese momento.
-—Yo tengo una idea —dijo {childName} con una sonrisa traviesa.
+{childName} aparecÃ­a a su lado justamente en ese momento.
+â€”Yo tengo una idea â€”dijo {childName} con una sonrisa traviesa.
 
-Ruco se puso sobre Bruno. El gato saltó sobre el burro. El gallo se subió al gato. Y {childName} contó hasta tres: ¡uno, dos, tres!
+Ruco se puso sobre Bruno. El gato saltÃ³ sobre el burro. El gallo se subiÃ³ al gato. Y {childName} contÃ³ hasta tres: Â¡uno, dos, tres!
 
-¡AUUUU! ¡GUAU! ¡MIAU! ¡QUIQUIRIQUÍ!
+Â¡AUUUU! Â¡GUAU! Â¡MIAU! Â¡QUIQUIRIQUÃ!
 
-Los ladrones salieron corriendo despavoridos por el susto. ¡Jamás habían escuchado semejante concierto! 😂
+Los ladrones salieron corriendo despavoridos por el susto. Â¡JamÃ¡s habÃ­an escuchado semejante concierto! ðŸ˜‚
 
-Los cuatro amigos y {childName} entraron en la casita. Había sopa caliente, pan dorado y una chimenea crepitante.
-—Nunca llegamos a Bremen —dijo el gallo un poco triste.
-—No hacía falta —respondió {childName}—. Ya tenemos nuestra propia banda musical y nuestra casa.
+Los cuatro amigos y {childName} entraron en la casita. HabÃ­a sopa caliente, pan dorado y una chimenea crepitante.
+â€”Nunca llegamos a Bremen â€”dijo el gallo un poco triste.
+â€”No hacÃ­a falta â€”respondiÃ³ {childName}â€”. Ya tenemos nuestra propia banda musical y nuestra casa.
 
-Ruco tocó el laúd con sus cascos. Bruno aulló en bemol. Miau ronroneó en armonía. Y el gallo marcó el ritmo.
+Ruco tocÃ³ el laÃºd con sus cascos. Bruno aullÃ³ en bemol. Miau ronroneÃ³ en armonÃ­a. Y el gallo marcÃ³ el ritmo.
 
-{childName} bailó con ellos toda la noche, porque a veces lo mejor del camino es aquello que encuentras por el camino. 🌟
+{childName} bailÃ³ con ellos toda la noche, porque a veces lo mejor del camino es aquello que encuentras por el camino. ðŸŒŸ
 
-Esa noche durmieron los cinco arropados junto al fuego, soñando con conciertos en bosques encantados.
+Esa noche durmieron los cinco arropados junto al fuego, soÃ±ando con conciertos en bosques encantados.
 
-Fin. ✨`,
-  coverEmoji: '🎺',
-  theme: 'música',
+Fin. âœ¨`,
+  coverEmoji: 'ðŸŽº',
+  theme: 'mÃºsica',
   ageMin: 3,
   ageMax: 8,
   isPremium: false,
   illustrationSlug: 'musicos-bremen',
   readingTimeMinutes: 5,
-  tags: ['animales', 'música', 'aventura', 'amistad'],
+  tags: ['animales', 'mÃºsica', 'aventura', 'amistad'],
 }
 
 export const gato_botas: ClassicStory = {
   id: 'gato-botas',
   slug: 'gato-botas',
   title: '{childName} y el Gato con Botas',
-  content: `En un molino ventoso vivían tres hermanos. Al mayor le tocó el molino, al segundo el asno, y al pequeño, llamado {childName}, le tocó el gato. 🐱
+  template: `En un molino ventoso vivÃ­an tres hermanos. Al mayor le tocÃ³ el molino, al segundo el asno, y al pequeÃ±o, llamado {childName}, le tocÃ³ el gato. ðŸ±
 
-{childName} suspiró mirando al gato.
-—¿Qué haré contigo? ¿Hacerte un abrigo y comérmelo en cena?
-—¡Señor {childName}! —dijo el gato hablando de repente—. Dame unas buenas botas de cuero y te haré el más famoso del reino.
+{childName} suspirÃ³ mirando al gato.
+â€”Â¿QuÃ© harÃ© contigo? Â¿Hacerte un abrigo y comÃ©rmelo en cena?
+â€”Â¡SeÃ±or {childName}! â€”dijo el gato hablando de repenteâ€”. Dame unas buenas botas de cuero y te harÃ© el mÃ¡s famoso del reino.
 
-{childName} abrió los ojos como platos pero, ¿qué tenía que perder?
+{childName} abriÃ³ los ojos como platos pero, Â¿quÃ© tenÃ­a que perder?
 
-El gato se calzó las botas de cuero brillante, se puso un sombrero con pluma y empezó a cazar conejos y perdices, que presentaba al rey como regalo de parte del Marqués de Carabás — ese era el nombre que había inventado para {childName}.
+El gato se calzÃ³ las botas de cuero brillante, se puso un sombrero con pluma y empezÃ³ a cazar conejos y perdices, que presentaba al rey como regalo de parte del MarquÃ©s de CarabÃ¡s â€” ese era el nombre que habÃ­a inventado para {childName}.
 
-Un día, el gato supo que el rey y su hija la princesa pasarían por el río.
-—¡Bañate ahora mismo! —ordenó al gato a {childName}.
+Un dÃ­a, el gato supo que el rey y su hija la princesa pasarÃ­an por el rÃ­o.
+â€”Â¡BaÃ±ate ahora mismo! â€”ordenÃ³ al gato a {childName}.
 
-Mientras {childName} nadaba, el carruaje real se acercó. El gato gritó:
-—¡Socorro! ¡El Marqués de Carabás se ahoga! ¡Sus ropas se las llevó el río!
+Mientras {childName} nadaba, el carruaje real se acercÃ³. El gato gritÃ³:
+â€”Â¡Socorro! Â¡El MarquÃ©s de CarabÃ¡s se ahoga! Â¡Sus ropas se las llevÃ³ el rÃ­o!
 
-El rey, agradecido y curioso, prestó a {childName} ropas de terciopelo. ¡Quedaba tan bien que la princesa no podía dejar de mirarlo!
+El rey, agradecido y curioso, prestÃ³ a {childName} ropas de terciopelo. Â¡Quedaba tan bien que la princesa no podÃ­a dejar de mirarlo!
 
-Luego el gato corrió adelante hasta el gran castillo de un ogro feroz.
-—He oído que puedes convertirte en cualquier animal —retó el gato.
-—¡SIEEEEE! —rugió el ogro transformándose en un enorme león.
-—Impresionante. ¿Pero en uno muy pequeño... como un ratón?
+Luego el gato corriÃ³ adelante hasta el gran castillo de un ogro feroz.
+â€”He oÃ­do que puedes convertirte en cualquier animal â€”retÃ³ el gato.
+â€”Â¡SIEEEEE! â€”rugiÃ³ el ogro transformÃ¡ndose en un enorme leÃ³n.
+â€”Impresionante. Â¿Pero en uno muy pequeÃ±o... como un ratÃ³n?
 
-El ogro se convirtió en ratón. ¡Zas! El gato lo atrapó de un salto. 🐭
+El ogro se convirtiÃ³ en ratÃ³n. Â¡Zas! El gato lo atrapÃ³ de un salto. ðŸ­
 
-Cuando llegó el carruaje real, el castillo ya era de {childName}.
+Cuando llegÃ³ el carruaje real, el castillo ya era de {childName}.
 
-El rey quedó tan impresionado que ofreció la mano de su hija. {childName} y la princesa se miraron y los dos sonrieron.
+El rey quedÃ³ tan impresionado que ofreciÃ³ la mano de su hija. {childName} y la princesa se miraron y los dos sonrieron.
 
-Y el gato, satisfecho con sus botas brillantes, ronroneó durante tres días seguidos. 😸
+Y el gato, satisfecho con sus botas brillantes, ronroneÃ³ durante tres dÃ­as seguidos. ðŸ˜¸
 
-Fin. 🌟`,
-  coverEmoji: '🐱',
+Fin. ðŸŒŸ`,
+  coverEmoji: 'ðŸ±',
   theme: 'aventura',
   ageMin: 3,
   ageMax: 8,
@@ -95,40 +95,40 @@ export const bella_durmiente: ClassicStory = {
   id: 'bella-durmiente',
   slug: 'bella-durmiente',
   title: '{childName} y la Bella Durmiente',
-  content: `Hace mucho tiempo, en un reino de torres doradas, nació una princesa tan hermosa que el rey y la reina invitaron a doce hadas buenas a la celebración. Cada hada otorgó un don: belleza, bondad, gracia, baile... 🧚
+  template: `Hace mucho tiempo, en un reino de torres doradas, naciÃ³ una princesa tan hermosa que el rey y la reina invitaron a doce hadas buenas a la celebraciÃ³n. Cada hada otorgÃ³ un don: belleza, bondad, gracia, baile... ðŸ§š
 
-Pero entonces llegó la hada decimotercera, a quien nadie había invitado.
-—¡Maldita sea la princesa! A los quince años, se pinchará con una rueca y dormirá para siempre.
+Pero entonces llegÃ³ la hada decimotercera, a quien nadie habÃ­a invitado.
+â€”Â¡Maldita sea la princesa! A los quince aÃ±os, se pincharÃ¡ con una rueca y dormirÃ¡ para siempre.
 
-El reino tembló. Pero el última hada buena que aún no había hablado se adelantó:
-—No puedo romper el hechizo, pero sí suavizarlo. No morirá: dormirá cien años, hasta que un beso de amor verdadero la despierte.
+El reino temblÃ³. Pero el Ãºltima hada buena que aÃºn no habÃ­a hablado se adelantÃ³:
+â€”No puedo romper el hechizo, pero sÃ­ suavizarlo. No morirÃ¡: dormirÃ¡ cien aÃ±os, hasta que un beso de amor verdadero la despierte.
 
-El rey mandó quemar todas las ruecas del reino. La princesa creció hermosa y bondadosa. Pero el día de su decimoquinto cumpleaños, subió a una torre y encontró a una anciana hilando.
-—¿Qué es eso tan gracioso? —preguntó tocando el huso.
+El rey mandÃ³ quemar todas las ruecas del reino. La princesa creciÃ³ hermosa y bondadosa. Pero el dÃ­a de su decimoquinto cumpleaÃ±os, subiÃ³ a una torre y encontrÃ³ a una anciana hilando.
+â€”Â¿QuÃ© es eso tan gracioso? â€”preguntÃ³ tocando el huso.
 
-Y cayó dormida. Todo el castillo durmió con ella.
+Y cayÃ³ dormida. Todo el castillo durmiÃ³ con ella.
 
-Cien años después, {childName} estaba explorando el bosque cuando encontró el castillo cubierto de rosas trepadoras y hiedra centenaria.
+Cien aÃ±os despuÃ©s, {childName} estaba explorando el bosque cuando encontrÃ³ el castillo cubierto de rosas trepadoras y hiedra centenaria.
 
-—¿Qué habrá dentro? —murmuró {childName} con ojos brillantes.
+â€”Â¿QuÃ© habrÃ¡ dentro? â€”murmurÃ³ {childName} con ojos brillantes.
 
-{childName} atravesó las zarzas que se abrían como por magia. Encontró soldados dormidos, cocineros dormidos, incluso perros dormidos con huesos a medio roer.
+{childName} atravesÃ³ las zarzas que se abrÃ­an como por magia. EncontrÃ³ soldados dormidos, cocineros dormidos, incluso perros dormidos con huesos a medio roer.
 
-En la torre más alta estaba la princesa, tan serena como si durmiera en una tarde de domingo.
+En la torre mÃ¡s alta estaba la princesa, tan serena como si durmiera en una tarde de domingo.
 
-{childName} sintió que el corazón se le llenaba de ternura. Se acercó con suavidad y, sin saber muy bien por qué, le dio un suave beso en la frente.
+{childName} sintiÃ³ que el corazÃ³n se le llenaba de ternura. Se acercÃ³ con suavidad y, sin saber muy bien por quÃ©, le dio un suave beso en la frente.
 
-La princesa abrió los ojos. Sonrió.
-—He soñado contigo durante cien años —susurró.
+La princesa abriÃ³ los ojos. SonriÃ³.
+â€”He soÃ±ado contigo durante cien aÃ±os â€”susurrÃ³.
 
-El castillo entero despertó en ese instante: cocineros, soldados, perros y todo. 🐕
+El castillo entero despertÃ³ en ese instante: cocineros, soldados, perros y todo. ðŸ•
 
-{childName} y la princesa bajaron de la mano hacia el gran banquete que los cocineros, sin entender muy bien qué había pasado, pusieron sobre la mesa en diez minutos.
+{childName} y la princesa bajaron de la mano hacia el gran banquete que los cocineros, sin entender muy bien quÃ© habÃ­a pasado, pusieron sobre la mesa en diez minutos.
 
-Vivieron felices para siempre en aquel castillo de rosas. 🌹
+Vivieron felices para siempre en aquel castillo de rosas. ðŸŒ¹
 
-Fin. ✨`,
-  coverEmoji: '🌹',
+Fin. âœ¨`,
+  coverEmoji: 'ðŸŒ¹',
   theme: 'magia',
   ageMin: 3,
   ageMax: 8,
@@ -142,43 +142,43 @@ export const pulgarcita: ClassicStory = {
   id: 'pulgarcita',
   slug: 'pulgarcita',
   title: '{childName} y Pulgarcita',
-  content: `Érase una mujer muy buena que deseaba tanto tener un hijo que fue a ver a una bruja sabía.
-—Toma esta semilla mágica —dijo la bruja—. Plántala y verás.
+  template: `Ã‰rase una mujer muy buena que deseaba tanto tener un hijo que fue a ver a una bruja sabÃ­a.
+â€”Toma esta semilla mÃ¡gica â€”dijo la brujaâ€”. PlÃ¡ntala y verÃ¡s.
 
-La mujer plantó la semilla. Creció una flor enorme. Y dentro de la flor, durmiendo en un pétalo como en una hamaca, había una niñita tan pequeñita como un pulgar. 💐
+La mujer plantÃ³ la semilla. CreciÃ³ una flor enorme. Y dentro de la flor, durmiendo en un pÃ©talo como en una hamaca, habÃ­a una niÃ±ita tan pequeÃ±ita como un pulgar. ðŸ’
 
-La llamaron {childName} y la quisieron con todo el corazón.
+La llamaron {childName} y la quisieron con todo el corazÃ³n.
 
-Una noche, un sapo la rapó para casarla con su hijo.
-—¡No quiero casarme con ningún sapo! —protestó {childName} desde su nenúfar en medio del río.
+Una noche, un sapo la rapÃ³ para casarla con su hijo.
+â€”Â¡No quiero casarme con ningÃºn sapo! â€”protestÃ³ {childName} desde su nenÃºfar en medio del rÃ­o.
 
-Los peces del río escucharon su llanto. Cortaron el tallo del nenúfar con sus dientes y {childName} navegó libre río abajo.
+Los peces del rÃ­o escucharon su llanto. Cortaron el tallo del nenÃºfar con sus dientes y {childName} navegÃ³ libre rÃ­o abajo.
 
-Un escarabajo la tomó volando pero luego la abandonó porque sus amigos decían que era demasiado rara.
+Un escarabajo la tomÃ³ volando pero luego la abandonÃ³ porque sus amigos decÃ­an que era demasiado rara.
 
-{childName} pasó el invierno con una ratona amable que le dio cobijo.
+{childName} pasÃ³ el invierno con una ratona amable que le dio cobijo.
 
-—Si quieres, puedes casarte con mi vecino el topo —ofreció la ratona.
-—Gracias, pero el topo vive bajo tierra y yo necesito el sol —respondió {childName}.
+â€”Si quieres, puedes casarte con mi vecino el topo â€”ofreciÃ³ la ratona.
+â€”Gracias, pero el topo vive bajo tierra y yo necesito el sol â€”respondiÃ³ {childName}.
 
-Un día encontró una golondrina herida enterrada en nieve. La cuidó con paciencia durante todo el invierno. Cuando llegó la primavera, la golondrina pudo volar.
+Un dÃ­a encontrÃ³ una golondrina herida enterrada en nieve. La cuidÃ³ con paciencia durante todo el invierno. Cuando llegÃ³ la primavera, la golondrina pudo volar.
 
-—Sube a mi lomo —dijo la golondrina—. Te llevaré a donde mereces estar.
+â€”Sube a mi lomo â€”dijo la golondrinaâ€”. Te llevarÃ© a donde mereces estar.
 
-Volaron alto, muy alto, sobre mares y montañas, hasta un país cálido lleno de flores.
+Volaron alto, muy alto, sobre mares y montaÃ±as, hasta un paÃ­s cÃ¡lido lleno de flores.
 
-Y en el centro de la flor más grande, {childName} encontró un principito diminuto, exactamente de su tamaño, con alas de libélula.
+Y en el centro de la flor mÃ¡s grande, {childName} encontrÃ³ un principito diminuto, exactamente de su tamaÃ±o, con alas de libÃ©lula.
 
-—¿Cómo te llamas? —preguntó el principito.
-—Me llamo {childName}. ¿Y tú?
-—Yo soy el Rey de las Flores. Y desde hoy, si quieres, serás su Reina.
+â€”Â¿CÃ³mo te llamas? â€”preguntÃ³ el principito.
+â€”Me llamo {childName}. Â¿Y tÃº?
+â€”Yo soy el Rey de las Flores. Y desde hoy, si quieres, serÃ¡s su Reina.
 
-{childName} miró a la golondrina, que asintió sonriendo.
+{childName} mirÃ³ a la golondrina, que asintiÃ³ sonriendo.
 
-Y así, en el país de las flores donde siempre brilla el sol, {childName} encontró su verdadero hogar. 🌺
+Y asÃ­, en el paÃ­s de las flores donde siempre brilla el sol, {childName} encontrÃ³ su verdadero hogar. ðŸŒº
 
-Fin. 🌟`,
-  coverEmoji: '🌺',
+Fin. ðŸŒŸ`,
+  coverEmoji: 'ðŸŒº',
   theme: 'naturaleza',
   ageMin: 3,
   ageMax: 7,
@@ -192,184 +192,184 @@ export const sastrecillo_valiente: ClassicStory = {
   id: 'sastrecillo-valiente',
   slug: 'sastrecillo-valiente',
   title: '{childName} el Sastrecillo Valiente',
-  content: `{childName} era un sastrecillo menudo que vivía en el piso más alto de una ciudad muy bulliciosa. Un día, mientras cosía, unas moscas se posaron en su pan con mermelada. ¡Paff! De un golpe mató siete de un solo golpe.
+  template: `{childName} era un sastrecillo menudo que vivÃ­a en el piso mÃ¡s alto de una ciudad muy bulliciosa. Un dÃ­a, mientras cosÃ­a, unas moscas se posaron en su pan con mermelada. Â¡Paff! De un golpe matÃ³ siete de un solo golpe.
 
-—¡Siete de un golpe! —exclamó {childName} tan orgulloso que bordó esas palabras en su cinturón. 🪡
+â€”Â¡Siete de un golpe! â€”exclamÃ³ {childName} tan orgulloso que bordÃ³ esas palabras en su cinturÃ³n. ðŸª¡
 
-Con el cinturón puesto, {childName} salió al mundo dispuesto a cualquier aventura.
+Con el cinturÃ³n puesto, {childName} saliÃ³ al mundo dispuesto a cualquier aventura.
 
-En la montaña, un gigante leyó el cinturón.
-—¿Siete de un golpe? ¿Tú, un renacuajo?
-—El mismo —respondió {childName} sin pestañear.
+En la montaÃ±a, un gigante leyÃ³ el cinturÃ³n.
+â€”Â¿Siete de un golpe? Â¿TÃº, un renacuajo?
+â€”El mismo â€”respondiÃ³ {childName} sin pestaÃ±ear.
 
-El gigante retó a {childName} a estrujar agua de una piedra.
-{childName} sacó un queso suave de su bolsillo y lo estrujó. ¡Chiss!
-—¿Esto? Pan comido —dijo {childName}.
+El gigante retÃ³ a {childName} a estrujar agua de una piedra.
+{childName} sacÃ³ un queso suave de su bolsillo y lo estrujÃ³. Â¡Chiss!
+â€”Â¿Esto? Pan comido â€”dijo {childName}.
 
-El gigante lanzó una piedra que tardó un minuto en bajar.
-{childName} lanzó un pajarillo que voló y no volvió.
-—La mía no volvió —señaló {childName} como si fuera lo más natural.
+El gigante lanzÃ³ una piedra que tardÃ³ un minuto en bajar.
+{childName} lanzÃ³ un pajarillo que volÃ³ y no volviÃ³.
+â€”La mÃ­a no volviÃ³ â€”seÃ±alÃ³ {childName} como si fuera lo mÃ¡s natural.
 
-El gigante, confundido, invitó a {childName} a pasar la noche. Por la noche, el gigante aplastó la cama donde creía que dormía {childName}, pero {childName} dormía cómodamente en el suelo.
+El gigante, confundido, invitÃ³ a {childName} a pasar la noche. Por la noche, el gigante aplastÃ³ la cama donde creÃ­a que dormÃ­a {childName}, pero {childName} dormÃ­a cÃ³modamente en el suelo.
 
-—¿Qué fue ese ruido? —preguntó {childName} bostezando.
+â€”Â¿QuÃ© fue ese ruido? â€”preguntÃ³ {childName} bostezando.
 
-El gigante huyó despavorido contando que había un valiente terrible capaz de sobrevivir todo. 😂
+El gigante huyÃ³ despavorido contando que habÃ­a un valiente terrible capaz de sobrevivir todo. ðŸ˜‚
 
-Las aventuras de {childName} llegaron al rey. Pronto le encomendaron matar a un jabalí enorme, capturar a un unicornio feroz y enfrentar a dos gigantes dormidos.
+Las aventuras de {childName} llegaron al rey. Pronto le encomendaron matar a un jabalÃ­ enorme, capturar a un unicornio feroz y enfrentar a dos gigantes dormidos.
 
-En cada caso, {childName} usó la astucia en lugar de la fuerza: el jabalí quedó atrapado en una capilla, el unicornio clavó su cuerno en un árbol, y los gigantes... se pelearon entre ellos.
+En cada caso, {childName} usÃ³ la astucia en lugar de la fuerza: el jabalÃ­ quedÃ³ atrapado en una capilla, el unicornio clavÃ³ su cuerno en un Ã¡rbol, y los gigantes... se pelearon entre ellos.
 
-El rey cumplió su promesa y {childName} se casó con la princesa, que ya había escuchado suficientes historias sobre el famoso sastrecillo para saber que sería la persona más divertida de todo el reino.
+El rey cumpliÃ³ su promesa y {childName} se casÃ³ con la princesa, que ya habÃ­a escuchado suficientes historias sobre el famoso sastrecillo para saber que serÃ­a la persona mÃ¡s divertida de todo el reino.
 
-Vivieron felices, cosiendo aventuras a medida. ✂️
+Vivieron felices, cosiendo aventuras a medida. âœ‚ï¸
 
-Fin. ✨`,
-  coverEmoji: '✂️',
-  theme: 'valentía',
+Fin. âœ¨`,
+  coverEmoji: 'âœ‚ï¸',
+  theme: 'valentÃ­a',
   ageMin: 4,
   ageMax: 9,
   isPremium: false,
   illustrationSlug: 'sastrecillo',
   readingTimeMinutes: 5,
-  tags: ['valentía', 'ingenio', 'aventura', 'humor'],
+  tags: ['valentÃ­a', 'ingenio', 'aventura', 'humor'],
 }
 
 export const traje_nuevo_emperador: ClassicStory = {
   id: 'traje-nuevo-emperador',
   slug: 'traje-nuevo-emperador',
   title: '{childName} y el Traje del Emperador',
-  content: `Había una vez un emperador tan presumido que gastaba todo el tesoro del reino en ropa nueva. 👑
+  template: `HabÃ­a una vez un emperador tan presumido que gastaba todo el tesoro del reino en ropa nueva. ðŸ‘‘
 
-Un día llegaron dos pícaros que se hacían llamar los mejores tejedores del mundo.
-—Majestades, tejemos una tela tan maravillosa que los tontos y los incapaces ¡no pueden verla!
+Un dÃ­a llegaron dos pÃ­caros que se hacÃ­an llamar los mejores tejedores del mundo.
+â€”Majestades, tejemos una tela tan maravillosa que los tontos y los incapaces Â¡no pueden verla!
 
-El emperador, encantado, les dio oro y seda. Los pícaros pretendían tejer sin parar, pero los telares estaban vacíos.
+El emperador, encantado, les dio oro y seda. Los pÃ­caros pretendÃ­an tejer sin parar, pero los telares estaban vacÃ­os.
 
 Cuando el primer ministro fue a ver el avance, no vio nada.
-—Yo debo de ser un tonto —pensó—, pero no lo admitiré.
-—¡Es espléndido! —exclamó en voz alta.
+â€”Yo debo de ser un tonto â€”pensÃ³â€”, pero no lo admitirÃ©.
+â€”Â¡Es esplÃ©ndido! â€”exclamÃ³ en voz alta.
 
-{childName} vivía en el palacio y un día se coló por curiosidad en el taller.
+{childName} vivÃ­a en el palacio y un dÃ­a se colÃ³ por curiosidad en el taller.
 
-—¿Ves qué hermosos colores? —preguntaron los tejedores.
-{childName} miró con mucho cuidado. No había nada.
+â€”Â¿Ves quÃ© hermosos colores? â€”preguntaron los tejedores.
+{childName} mirÃ³ con mucho cuidado. No habÃ­a nada.
 
-—Disculpad —dijo {childName} muy serio—, pero los telares están vacíos. No hay ninguna tela.
+â€”Disculpad â€”dijo {childName} muy serioâ€”, pero los telares estÃ¡n vacÃ­os. No hay ninguna tela.
 
 Los tejedores se pusieron nerviosos.
-—Es porque tú eres... aún muy pequeño para apreciarlo.
+â€”Es porque tÃº eres... aÃºn muy pequeÃ±o para apreciarlo.
 
-{childName} frunció el ceño. ¿Pequeño? {childName} conocía la diferencia entre algo y nada.
+{childName} frunciÃ³ el ceÃ±o. Â¿PequeÃ±o? {childName} conocÃ­a la diferencia entre algo y nada.
 
-El día del gran desfile, el emperador marchó por las calles con su traje invisible. La gente aplaudía sin entender muy bien por qué. Los ministros elogiaban.
+El dÃ­a del gran desfile, el emperador marchÃ³ por las calles con su traje invisible. La gente aplaudÃ­a sin entender muy bien por quÃ©. Los ministros elogiaban.
 
-Entonces una voz pequeña pero clara se oyó entre la multitud. Un niño gritó:
-—¡Pero si el emperador va desnudo!
+Entonces una voz pequeÃ±a pero clara se oyÃ³ entre la multitud. Un niÃ±o gritÃ³:
+â€”Â¡Pero si el emperador va desnudo!
 
-La gente se miró. Parpadeó. Y estalló en carcajadas.
+La gente se mirÃ³. ParpadeÃ³. Y estallÃ³ en carcajadas.
 
-{childName} reconoció esa voz valiente. Era la suya propia, reflejada en otro niño que también se había atrevido a decir la verdad.
+{childName} reconociÃ³ esa voz valiente. Era la suya propia, reflejada en otro niÃ±o que tambiÃ©n se habÃ­a atrevido a decir la verdad.
 
-El emperador, rojo como un tomate, entendió la lección. Despidió a los pícaros y desde ese día confió más en quienes le decían la verdad que en quienes le decían lo que quería escuchar.
+El emperador, rojo como un tomate, entendiÃ³ la lecciÃ³n. DespidiÃ³ a los pÃ­caros y desde ese dÃ­a confiÃ³ mÃ¡s en quienes le decÃ­an la verdad que en quienes le decÃ­an lo que querÃ­a escuchar.
 
-Y a {childName} le regaló el mejor helado del reino como agradecimiento. 🍦
+Y a {childName} le regalÃ³ el mejor helado del reino como agradecimiento. ðŸ¦
 
-Fin. ✨`,
-  coverEmoji: '👘',
+Fin. âœ¨`,
+  coverEmoji: 'ðŸ‘˜',
   theme: 'honestidad',
   ageMin: 4,
   ageMax: 9,
   isPremium: false,
   illustrationSlug: 'traje-emperador',
   readingTimeMinutes: 4,
-  tags: ['honestidad', 'valentía', 'humor', 'moraleja'],
+  tags: ['honestidad', 'valentÃ­a', 'humor', 'moraleja'],
 }
 
 export const sirenita: ClassicStory = {
   id: 'sirenita',
   slug: 'sirenita',
   title: '{childName} y la Sirenita',
-  content: `Bajo las olas del mar más azul del mundo vivía {childName}, la más joven de las seis hijas del rey del mar. Mientras sus hermanas coleccionaban perlas y conchas, {childName} coleccionaba cosas del mundo de arriba: una taza rota, un zapato, una moneda brillante. 🐚
+  template: `Bajo las olas del mar mÃ¡s azul del mundo vivÃ­a {childName}, la mÃ¡s joven de las seis hijas del rey del mar. Mientras sus hermanas coleccionaban perlas y conchas, {childName} coleccionaba cosas del mundo de arriba: una taza rota, un zapato, una moneda brillante. ðŸš
 
-A los quince años, las sirenas podían por fin subir a la superficie. Cuando llegó el turno de {childName}, saltó fuera del agua justo en una noche de tormenta.
+A los quince aÃ±os, las sirenas podÃ­an por fin subir a la superficie. Cuando llegÃ³ el turno de {childName}, saltÃ³ fuera del agua justo en una noche de tormenta.
 
-Allí vio un barco. Y en el barco vio a un príncipe guapísimo. Y luego vio cómo el barco naufragaba.
+AllÃ­ vio un barco. Y en el barco vio a un prÃ­ncipe guapÃ­simo. Y luego vio cÃ³mo el barco naufragaba.
 
-{childName} salvó al príncipe de ahogarse y lo dejó en la orilla antes de hundirse de nuevo en el mar.
+{childName} salvÃ³ al prÃ­ncipe de ahogarse y lo dejÃ³ en la orilla antes de hundirse de nuevo en el mar.
 
-El recuerdo del príncipe le llenaba el corazón de algo nuevo y extraño. Fue a ver a la bruja del mar.
-—Te daré piernas por tu voz —ofreció la bruja.
-—Lo acepto —dijo {childName}.
+El recuerdo del prÃ­ncipe le llenaba el corazÃ³n de algo nuevo y extraÃ±o. Fue a ver a la bruja del mar.
+â€”Te darÃ© piernas por tu voz â€”ofreciÃ³ la bruja.
+â€”Lo acepto â€”dijo {childName}.
 
-Con piernas pero sin voz, {childName} llegó a tierra. El príncipe la encontró y la acogió, pero no sabía que ella era quien lo había salvado.
+Con piernas pero sin voz, {childName} llegÃ³ a tierra. El prÃ­ncipe la encontrÃ³ y la acogiÃ³, pero no sabÃ­a que ella era quien lo habÃ­a salvado.
 
-El príncipe se enamoró de otra y llegó el día de la boda. Las hermanas de {childName} aparecieron con un cuchillo.
-—Si matas al príncipe antes del amanecer, podrás volver al mar.
+El prÃ­ncipe se enamorÃ³ de otra y llegÃ³ el dÃ­a de la boda. Las hermanas de {childName} aparecieron con un cuchillo.
+â€”Si matas al prÃ­ncipe antes del amanecer, podrÃ¡s volver al mar.
 
-{childName} miró al príncipe dormido. Lo vio feliz. Y tiró el cuchillo al océano.
+{childName} mirÃ³ al prÃ­ncipe dormido. Lo vio feliz. Y tirÃ³ el cuchillo al ocÃ©ano.
 
-Cuando el sol salió, {childName} se convirtió en espuma de mar... pero entonces las hadas del aire la rodearon.
-—Tienes un corazón tan puro que vivirás con nosotras —dijeron—. Y harás el bien por el mundo, un soplo de brisa a la vez.
+Cuando el sol saliÃ³, {childName} se convirtiÃ³ en espuma de mar... pero entonces las hadas del aire la rodearon.
+â€”Tienes un corazÃ³n tan puro que vivirÃ¡s con nosotras â€”dijeronâ€”. Y harÃ¡s el bien por el mundo, un soplo de brisa a la vez.
 
-{childName} subió al cielo ligera como una nube, libre como el viento, con el corazón lleno de todo el amor del mundo. 💙
+{childName} subiÃ³ al cielo ligera como una nube, libre como el viento, con el corazÃ³n lleno de todo el amor del mundo. ðŸ’™
 
-Desde ese día, cada brisa suave del mar lleva un abrazo de {childName}.
+Desde ese dÃ­a, cada brisa suave del mar lleva un abrazo de {childName}.
 
-Fin. 🌟`,
-  coverEmoji: '🧜',
-  theme: 'océano',
+Fin. ðŸŒŸ`,
+  coverEmoji: 'ðŸ§œ',
+  theme: 'ocÃ©ano',
   ageMin: 3,
   ageMax: 8,
   isPremium: false,
   illustrationSlug: 'sirenita',
   readingTimeMinutes: 5,
-  tags: ['océano', 'amor', 'aventura', 'sirenas'],
+  tags: ['ocÃ©ano', 'amor', 'aventura', 'sirenas'],
 }
 
 export const pinocho: ClassicStory = {
   id: 'pinocho',
   slug: 'pinocho',
   title: '{childName} y Pinocho',
-  content: `En el taller del viejo carpintero Gepetto había un trozo de madera que reía y lloraba. Gepetto lo talló hasta darle forma de marioneta y la llamó Pinocho. 🪵
+  template: `En el taller del viejo carpintero Gepetto habÃ­a un trozo de madera que reÃ­a y lloraba. Gepetto lo tallÃ³ hasta darle forma de marioneta y la llamÃ³ Pinocho. ðŸªµ
 
-Esa noche, el Hada Azul descendió del cielo.
-—Gepetto ha deseado tanto tener un hijo que te daré vida. Pero para convertirte en un niño de verdad, deberás ser bueno, honesto y valiente.
+Esa noche, el Hada Azul descendiÃ³ del cielo.
+â€”Gepetto ha deseado tanto tener un hijo que te darÃ© vida. Pero para convertirte en un niÃ±o de verdad, deberÃ¡s ser bueno, honesto y valiente.
 
-Pinocho tenía un problema: cuando mentía, ¡la nariz le crecía!
+Pinocho tenÃ­a un problema: cuando mentÃ­a, Â¡la nariz le crecÃ­a!
 
-Un día, Pinocho conoció a {childName}, que jugaba cerca del taller.
-—¿Es verdad que tu nariz crece cuando mientes? —preguntó {childName}.
-—¡No! —dijo Pinocho. Y la nariz creció tres centímetros.
+Un dÃ­a, Pinocho conociÃ³ a {childName}, que jugaba cerca del taller.
+â€”Â¿Es verdad que tu nariz crece cuando mientes? â€”preguntÃ³ {childName}.
+â€”Â¡No! â€”dijo Pinocho. Y la nariz creciÃ³ tres centÃ­metros.
 
-{childName} soltó una carcajada.
-—Voy a ser tu mejor amigo para enseñarte a ser honesto.
+{childName} soltÃ³ una carcajada.
+â€”Voy a ser tu mejor amigo para enseÃ±arte a ser honesto.
 
-Pero Pinocho era fácil de engañar. Un zorro y un gato lo convencieron de enterrar sus monedas para que crecieran más. {childName} le advirtió pero Pinocho no escuchó.
+Pero Pinocho era fÃ¡cil de engaÃ±ar. Un zorro y un gato lo convencieron de enterrar sus monedas para que crecieran mÃ¡s. {childName} le advirtiÃ³ pero Pinocho no escuchÃ³.
 
-Las monedas desaparecieron, Pinocho fue capturado por el Director del circo, y luego acabó en el País de los Juguetes transformado en burrito.
+Las monedas desaparecieron, Pinocho fue capturado por el Director del circo, y luego acabÃ³ en el PaÃ­s de los Juguetes transformado en burrito.
 
-Gepetto salió en su busca con un bote de madera. {childName} lo encontró llorando en la playa.
-—¡El tiburón se ha tragado a mi papá!
+Gepetto saliÃ³ en su busca con un bote de madera. {childName} lo encontrÃ³ llorando en la playa.
+â€”Â¡El tiburÃ³n se ha tragado a mi papÃ¡!
 
-{childName} sujetó la mano de Pinocho.
-—Juntos lo rescataremos.
+{childName} sujetÃ³ la mano de Pinocho.
+â€”Juntos lo rescataremos.
 
-Nadaron hasta la boca del tiburón, se colaron entre sus dientes y encontraron a Gepetto en la barriga del monstruo, con su velita casi apagada.
+Nadaron hasta la boca del tiburÃ³n, se colaron entre sus dientes y encontraron a Gepetto en la barriga del monstruo, con su velita casi apagada.
 
-—¡Papá! —gritó Pinocho.
+â€”Â¡PapÃ¡! â€”gritÃ³ Pinocho.
 
-El tiburón, con las cosquillas que le hacía {childName}, estornudó enormemente y los tres salieron disparados.
+El tiburÃ³n, con las cosquillas que le hacÃ­a {childName}, estornudÃ³ enormemente y los tres salieron disparados.
 
-En la orilla, Gepetto abrazó a Pinocho tan fuerte que le temblaron las bisagras.
+En la orilla, Gepetto abrazÃ³ a Pinocho tan fuerte que le temblaron las bisagras.
 
-Esa noche, el Hada Azul visitó a Pinocho.
-—Has sido valiente, leal y honesto cuando importaba. Ya eres un niño de verdad.
+Esa noche, el Hada Azul visitÃ³ a Pinocho.
+â€”Has sido valiente, leal y honesto cuando importaba. Ya eres un niÃ±o de verdad.
 
-{childName} lo miró sonriendo. Pinocho era ya un niño. Y su mejor amigo para siempre. ✨
+{childName} lo mirÃ³ sonriendo. Pinocho era ya un niÃ±o. Y su mejor amigo para siempre. âœ¨
 
-Fin. 🌟`,
-  coverEmoji: '🪄',
+Fin. ðŸŒŸ`,
+  coverEmoji: 'ðŸª„',
   theme: 'honestidad',
   ageMin: 3,
   ageMax: 8,
@@ -382,41 +382,41 @@ Fin. 🌟`,
 export const aladino: ClassicStory = {
   id: 'aladino-lampara',
   slug: 'aladino-lampara',
-  title: '{childName} y la Lámpara de Aladino',
-  content: `En la ciudad de Bagdad, donde las calles huelen a especias y los mercados brillan como joyas, vivía {childName}, un niño travieso y de buen corazón que soñaba con grandes aventuras. 🌟
+  title: '{childName} y la LÃ¡mpara de Aladino',
+  template: `En la ciudad de Bagdad, donde las calles huelen a especias y los mercados brillan como joyas, vivÃ­a {childName}, un niÃ±o travieso y de buen corazÃ³n que soÃ±aba con grandes aventuras. ðŸŒŸ
 
-Un día, un mago disfrazado de tío suyo se lo llevó al desierto.
-—Hay una cueva con un tesoro. Solo un corazón puro puede entrar.
+Un dÃ­a, un mago disfrazado de tÃ­o suyo se lo llevÃ³ al desierto.
+â€”Hay una cueva con un tesoro. Solo un corazÃ³n puro puede entrar.
 
-{childName} bajó a la cueva oscura. Había alfombras voladoras, lámparas doradas y frutas de cristal de todos los colores. El mago le pidió la lámpara vieja y sucia del fondo.
+{childName} bajÃ³ a la cueva oscura. HabÃ­a alfombras voladoras, lÃ¡mparas doradas y frutas de cristal de todos los colores. El mago le pidiÃ³ la lÃ¡mpara vieja y sucia del fondo.
 
-Cuando {childName} intentó salir, el mago cerró la cueva. ¡Trampa!
+Cuando {childName} intentÃ³ salir, el mago cerrÃ³ la cueva. Â¡Trampa!
 
-Solo en la oscuridad, {childName} frotó sin querer la lámpara. Boom. Una nube de humo y un Genio enorme de ojos amables y sonrisa brillante.
+Solo en la oscuridad, {childName} frotÃ³ sin querer la lÃ¡mpara. Boom. Una nube de humo y un Genio enorme de ojos amables y sonrisa brillante.
 
-—¡Soy el Genio de la Lámpara y tengo el poder de conceder tres deseos! ¿Cuál es el tuyo, amo?
+â€”Â¡Soy el Genio de la LÃ¡mpara y tengo el poder de conceder tres deseos! Â¿CuÃ¡l es el tuyo, amo?
 
-{childName} pensó con cuidado.
-—Primero: quiero salir de esta cueva.
+{childName} pensÃ³ con cuidado.
+â€”Primero: quiero salir de esta cueva.
 
 En un parpadeo, {childName} estaba fuera.
 
-El Genio, que se aburría mucho dentro de la lámpara, se convirtió en amigo inseparable de {childName}. Viajaron juntos, vieron maravillas y aprendieron el uno del otro.
+El Genio, que se aburrÃ­a mucho dentro de la lÃ¡mpara, se convirtiÃ³ en amigo inseparable de {childName}. Viajaron juntos, vieron maravillas y aprendieron el uno del otro.
 
-Un día, el mago robó la lámpara. {childName} no usó los deseos restantes para recuperarla.
+Un dÃ­a, el mago robÃ³ la lÃ¡mpara. {childName} no usÃ³ los deseos restantes para recuperarla.
 
-Usando su ingenio y la ayuda de amigos del mercado, engañó al mago, recuperó la lámpara y liberó al Genio con el tercer deseo.
+Usando su ingenio y la ayuda de amigos del mercado, engaÃ±Ã³ al mago, recuperÃ³ la lÃ¡mpara y liberÃ³ al Genio con el tercer deseo.
 
-—¿De verdad me liberas? —preguntó el Genio incrédulo.
-—Nadie merece vivir encerrado —dijo {childName}.
+â€”Â¿De verdad me liberas? â€”preguntÃ³ el Genio incrÃ©dulo.
+â€”Nadie merece vivir encerrado â€”dijo {childName}.
 
-El Genio, con los ojos brillantes de emoción, abrazó a {childName}.
-—En miles de años, nadie había elegido la libertad de otro antes que sus propios deseos.
+El Genio, con los ojos brillantes de emociÃ³n, abrazÃ³ a {childName}.
+â€”En miles de aÃ±os, nadie habÃ­a elegido la libertad de otro antes que sus propios deseos.
 
-Y se quedó junto a {childName} no por obligación sino por amistad, viajando por los cielos en la alfombra mágica hasta el fin de los tiempos. 🪄
+Y se quedÃ³ junto a {childName} no por obligaciÃ³n sino por amistad, viajando por los cielos en la alfombra mÃ¡gica hasta el fin de los tiempos. ðŸª„
 
-Fin. ✨`,
-  coverEmoji: '🪔',
+Fin. âœ¨`,
+  coverEmoji: 'ðŸª”',
   theme: 'aventura',
   ageMin: 4,
   ageMax: 9,
@@ -430,37 +430,37 @@ export const ali_baba: ClassicStory = {
   id: 'ali-baba',
   slug: 'ali-baba',
   title: '{childName} y los 40 Ladrones',
-  content: `{childName} cortaba leña en el bosque cuando escuchó el galope de cuarenta caballos. Se escondió en un árbol y observó cómo cuarenta ladrones se detuvieron ante una roca enorme.
+  template: `{childName} cortaba leÃ±a en el bosque cuando escuchÃ³ el galope de cuarenta caballos. Se escondiÃ³ en un Ã¡rbol y observÃ³ cÃ³mo cuarenta ladrones se detuvieron ante una roca enorme.
 
-El jefe pronunció en voz alta:
-—¡Ábrete, Sésamo!
+El jefe pronunciÃ³ en voz alta:
+â€”Â¡Ãbrete, SÃ©samo!
 
-La roca se abrió. Los ladrones entraron y volvieron a salir con alforjas llenas de monedas. Cuando se fueron, {childName} bajó del árbol.
+La roca se abriÃ³. Los ladrones entraron y volvieron a salir con alforjas llenas de monedas. Cuando se fueron, {childName} bajÃ³ del Ã¡rbol.
 
-—¡Ábrete, Sésamo! —dijo {childName} imitando al jefe.
+â€”Â¡Ãbrete, SÃ©samo! â€”dijo {childName} imitando al jefe.
 
-La cueva se abrió. Adentro brillaban montañas de oro, sedas y piedras preciosas. {childName} tomó solo lo necesario para que su familia no pasara hambre. 💰
+La cueva se abriÃ³. Adentro brillaban montaÃ±as de oro, sedas y piedras preciosas. {childName} tomÃ³ solo lo necesario para que su familia no pasara hambre. ðŸ’°
 
-Pero el hermano mayor de {childName} era codicioso. Entró a la cueva a llenarse los bolsillos y en su emoción olvidó la palabra mágica para salir. Los ladrones lo encontraron.
+Pero el hermano mayor de {childName} era codicioso. EntrÃ³ a la cueva a llenarse los bolsillos y en su emociÃ³n olvidÃ³ la palabra mÃ¡gica para salir. Los ladrones lo encontraron.
 
-Los ladrones buscaron a {childName} marcando su puerta con tiza. Pero Morgiana, la astuta criada de la familia, borró las marcas en todas las puertas del barrio.
+Los ladrones buscaron a {childName} marcando su puerta con tiza. Pero Morgiana, la astuta criada de la familia, borrÃ³ las marcas en todas las puertas del barrio.
 
-El capitán se disfrazó de mercader de aceite y llegó con cuarenta tinajas. En treinta y nueve de ellas escondió a sus hombres. Solo una tenía aceite de verdad.
+El capitÃ¡n se disfrazÃ³ de mercader de aceite y llegÃ³ con cuarenta tinajas. En treinta y nueve de ellas escondiÃ³ a sus hombres. Solo una tenÃ­a aceite de verdad.
 
-Pero Morgiana lo descubrió. Fue tinaja por tinaja despertando a cada ladrón con una palmadita y diciéndoles que la contraseña había cambiado. Los ladrones, confundidos, salieron corriendo sin saber muy bien qué había pasado.
+Pero Morgiana lo descubriÃ³. Fue tinaja por tinaja despertando a cada ladrÃ³n con una palmadita y diciÃ©ndoles que la contraseÃ±a habÃ­a cambiado. Los ladrones, confundidos, salieron corriendo sin saber muy bien quÃ© habÃ­a pasado.
 
 {childName} y Morgiana celebraron con un gran banquete.
 
-—¿Cómo puedo agradecerte? —preguntó {childName}.
-—Enséñame la palabra mágica —dijo Morgiana sonriendo.
+â€”Â¿CÃ³mo puedo agradecerte? â€”preguntÃ³ {childName}.
+â€”EnsÃ©Ã±ame la palabra mÃ¡gica â€”dijo Morgiana sonriendo.
 
 {childName} se rio.
-—¡Ábrete, Sésamo! Y que nuestra amistad nunca tenga palabras mágicas, sino solo confianza de verdad.
+â€”Â¡Ãbrete, SÃ©samo! Y que nuestra amistad nunca tenga palabras mÃ¡gicas, sino solo confianza de verdad.
 
-Desde ese día, {childName} y Morgiana fueron los mejores amigos del barrio, y la cueva del tesoro se convirtió en biblioteca para todos los niños del pueblo. 📚
+Desde ese dÃ­a, {childName} y Morgiana fueron los mejores amigos del barrio, y la cueva del tesoro se convirtiÃ³ en biblioteca para todos los niÃ±os del pueblo. ðŸ“š
 
-Fin. 🌟`,
-  coverEmoji: '🏺',
+Fin. ðŸŒŸ`,
+  coverEmoji: 'ðŸº',
   theme: 'aventura',
   ageMin: 5,
   ageMax: 10,
@@ -474,38 +474,38 @@ export const patito_feo_invierno: ClassicStory = {
   id: 'patito-feo-invierno',
   slug: 'patito-feo-invierno',
   title: '{childName} y el Patito Feo en Invierno',
-  content: `Cuando llegó el otoño, las hojas del estanque se volvieron doradas y los patos del norte emigraron al sur. Pero {childName}, el patito diferente al que nadie quería, no sabía adónde ir. ❄️
+  template: `Cuando llegÃ³ el otoÃ±o, las hojas del estanque se volvieron doradas y los patos del norte emigraron al sur. Pero {childName}, el patito diferente al que nadie querÃ­a, no sabÃ­a adÃ³nde ir. â„ï¸
 
-—¡No te quedas aquí con nosotros! —dijeron los patos del estanque.
+â€”Â¡No te quedas aquÃ­ con nosotros! â€”dijeron los patos del estanque.
 
-{childName} se fue al gran lago. Allí vio los cisnes más hermosos que existían, blancos como la nieve. Se quedó mirándolos con tanta tristeza que casi no notó cuando el frío del invierno llegó de golpe.
+{childName} se fue al gran lago. AllÃ­ vio los cisnes mÃ¡s hermosos que existÃ­an, blancos como la nieve. Se quedÃ³ mirÃ¡ndolos con tanta tristeza que casi no notÃ³ cuando el frÃ­o del invierno llegÃ³ de golpe.
 
-El lago se heló. {childName} quedó atrapado en el hielo, solo con su propio aliento.
+El lago se helÃ³. {childName} quedÃ³ atrapado en el hielo, solo con su propio aliento.
 
-Un granjero lo encontró a la mañana siguiente.
-—Vaya pájaro más raro —murmuró el granjero. Pero era un buen hombre y lo llevó a casa calentito.
+Un granjero lo encontrÃ³ a la maÃ±ana siguiente.
+â€”Vaya pÃ¡jaro mÃ¡s raro â€”murmurÃ³ el granjero. Pero era un buen hombre y lo llevÃ³ a casa calentito.
 
-Dentro de la granja había niños, perros y gatos. Los gatos perseguían a {childName}. Las niñas intentaban cogerlo. El susto era tan grande que {childName} volcó la mantequilla, el barreño de harina y se metió de cabeza en la olla de leche. 😅
+Dentro de la granja habÃ­a niÃ±os, perros y gatos. Los gatos perseguÃ­an a {childName}. Las niÃ±as intentaban cogerlo. El susto era tan grande que {childName} volcÃ³ la mantequilla, el barreÃ±o de harina y se metiÃ³ de cabeza en la olla de leche. ðŸ˜…
 
-La mujer del granjero persiguió a {childName} con una escoba. {childName} voló por la ventana y aterrizó en el pantano helado.
+La mujer del granjero persiguiÃ³ a {childName} con una escoba. {childName} volÃ³ por la ventana y aterrizÃ³ en el pantano helado.
 
-Allí, solo entre los juncos nevados, {childName} pasó el invierno más largo de su vida.
+AllÃ­, solo entre los juncos nevados, {childName} pasÃ³ el invierno mÃ¡s largo de su vida.
 
-Pero llegó la primavera. El sol calentó las aguas. Las flores abrieron sus pétalos. Y {childName}, hambriento y cansado, vio los cisnes otra vez.
+Pero llegÃ³ la primavera. El sol calentÃ³ las aguas. Las flores abrieron sus pÃ©talos. Y {childName}, hambriento y cansado, vio los cisnes otra vez.
 
-Se acercó con la cabeza gacha, sin esperar bondad.
+Se acercÃ³ con la cabeza gacha, sin esperar bondad.
 
 Entonces vio su propio reflejo en el agua cristalina.
 
-No era un patito. Era un cisne. El más elegante de todos.
+No era un patito. Era un cisne. El mÃ¡s elegante de todos.
 
-Los otros cisnes lo rodearon. Los niños de la orilla gritaron:
-—¡Mirad, el cisne nuevo es el más bonito de todos!
+Los otros cisnes lo rodearon. Los niÃ±os de la orilla gritaron:
+â€”Â¡Mirad, el cisne nuevo es el mÃ¡s bonito de todos!
 
-{childName} estiró el cuello largo hacia el sol azul. Por primera vez en su vida, sonrió. 🦢
+{childName} estirÃ³ el cuello largo hacia el sol azul. Por primera vez en su vida, sonriÃ³. ðŸ¦¢
 
-Fin. ✨`,
-  coverEmoji: '❄️',
+Fin. âœ¨`,
+  coverEmoji: 'â„ï¸',
   theme: 'invierno',
   ageMin: 3,
   ageMax: 8,
@@ -519,52 +519,52 @@ export const tres_osos: ClassicStory = {
   id: 'tres-osos',
   slug: 'tres-osos',
   title: '{childName} y los Tres Osos',
-  content: `Los tres osos — el papá oso, la mamá osa y el osito bebé — salieron a pasear por el bosque mientras sus gachas de avena se enfriaban. 🐻
+  template: `Los tres osos â€” el papÃ¡ oso, la mamÃ¡ osa y el osito bebÃ© â€” salieron a pasear por el bosque mientras sus gachas de avena se enfriaban. ðŸ»
 
-{childName} paseaba por ese mismo bosque cuando vio la casita entre los pinos. Llamó a la puerta. Nadie respondió. Entró.
+{childName} paseaba por ese mismo bosque cuando vio la casita entre los pinos. LlamÃ³ a la puerta. Nadie respondiÃ³. EntrÃ³.
 
-En la mesa había tres boles de gachas.
-{childName} probó las del bol grande: muy calientes.
-Probó las del bol mediano: demasiado frías.
-Probó las del bol pequeño: ¡perfectas! Y se las comió toditas.
+En la mesa habÃ­a tres boles de gachas.
+{childName} probÃ³ las del bol grande: muy calientes.
+ProbÃ³ las del bol mediano: demasiado frÃ­as.
+ProbÃ³ las del bol pequeÃ±o: Â¡perfectas! Y se las comiÃ³ toditas.
 
-En el salón había tres sillas.
+En el salÃ³n habÃ­a tres sillas.
 La grande: demasiado dura.
 La mediana: demasiado blanda.
-La pequeña: perfecta. Y se mecía tan bien que... craaac. Se rompió.
+La pequeÃ±a: perfecta. Y se mecÃ­a tan bien que... craaac. Se rompiÃ³.
 
-Subió las escaleras bostezando.
+SubiÃ³ las escaleras bostezando.
 La cama grande: muy ancha.
 La cama mediana: muy alta.
-La cama pequeña: perfecta.
+La cama pequeÃ±a: perfecta.
 
-{childName} se quedó dormido.
+{childName} se quedÃ³ dormido.
 
-Cuando los tres osos regresaron, papá oso tronó:
-—¡Alguien ha comido mis gachas!
-Mamá osa suspiró:
-—¡Alguien ha comido las mías!
-El osito sollozó:
-—¡Alguien ha comido las mías y se las ha terminado!
+Cuando los tres osos regresaron, papÃ¡ oso tronÃ³:
+â€”Â¡Alguien ha comido mis gachas!
+MamÃ¡ osa suspirÃ³:
+â€”Â¡Alguien ha comido las mÃ­as!
+El osito sollozÃ³:
+â€”Â¡Alguien ha comido las mÃ­as y se las ha terminado!
 
 Subieron. Las sillas, igual. La cama del osito...
-—¡Alguien está durmiendo aquí! ¡Y todavía está aquí!
+â€”Â¡Alguien estÃ¡ durmiendo aquÃ­! Â¡Y todavÃ­a estÃ¡ aquÃ­!
 
-{childName} abrió los ojos. Tres osos. Miró a los tres osos. Los tres osos lo miraron a él.
+{childName} abriÃ³ los ojos. Tres osos. MirÃ³ a los tres osos. Los tres osos lo miraron a Ã©l.
 
-{childName} se sentó muy derecho.
-—Hola. Soy {childName}. Lo siento mucho. Tengo mucha hambre y mucho sueño, y vuestra casita olía tan bien...
+{childName} se sentÃ³ muy derecho.
+â€”Hola. Soy {childName}. Lo siento mucho. Tengo mucha hambre y mucho sueÃ±o, y vuestra casita olÃ­a tan bien...
 
 Hubo un silencio largo.
 
-Entonces el osito se rio. Una risa pequeña y redonda. Mamá osa fue a la cocina y volvió con más gachas. Papá oso arregló la silla.
+Entonces el osito se rio. Una risa pequeÃ±a y redonda. MamÃ¡ osa fue a la cocina y volviÃ³ con mÃ¡s gachas. PapÃ¡ oso arreglÃ³ la silla.
 
-—La próxima vez, llama primero —dijo papá oso con la voz más amable del mundo.
+â€”La prÃ³xima vez, llama primero â€”dijo papÃ¡ oso con la voz mÃ¡s amable del mundo.
 
-{childName} comió gachas con los tres osos, arregló la silla rota y les prometió volver a visitar. Pero llamando siempre. 🚪
+{childName} comiÃ³ gachas con los tres osos, arreglÃ³ la silla rota y les prometiÃ³ volver a visitar. Pero llamando siempre. ðŸšª
 
-Fin. 🌟`,
-  coverEmoji: '🐻',
+Fin. ðŸŒŸ`,
+  coverEmoji: 'ðŸ»',
   theme: 'bosque',
   ageMin: 2,
   ageMax: 6,
@@ -577,51 +577,51 @@ Fin. 🌟`,
 export const flautista_hamelin: ClassicStory = {
   id: 'flautista-hamelin',
   slug: 'flautista-hamelin',
-  title: '{childName} y el Flautista de Hamelín',
-  content: `La ciudad de Hamelín tenía un problema enorme: ratas. Miles de ratas que se comían el queso, dormían en las camas y bailaban en la plaza mayor. 🐀
+  title: '{childName} y el Flautista de HamelÃ­n',
+  template: `La ciudad de HamelÃ­n tenÃ­a un problema enorme: ratas. Miles de ratas que se comÃ­an el queso, dormÃ­an en las camas y bailaban en la plaza mayor. ðŸ€
 
-Un día llegó un hombre con una capa de mil colores y una flauta de oro.
-—Señores alcaldes, por cien monedas de oro os libraré de todas las ratas.
+Un dÃ­a llegÃ³ un hombre con una capa de mil colores y una flauta de oro.
+â€”SeÃ±ores alcaldes, por cien monedas de oro os librarÃ© de todas las ratas.
 
-El alcalde aceptó. El flautista tocó su flauta. Una música extraña y dulce salió de ella. Todas las ratas salieron de sus escondites y siguieron al flautista danzando hasta el río, donde desaparecieron para siempre.
+El alcalde aceptÃ³. El flautista tocÃ³ su flauta. Una mÃºsica extraÃ±a y dulce saliÃ³ de ella. Todas las ratas salieron de sus escondites y siguieron al flautista danzando hasta el rÃ­o, donde desaparecieron para siempre.
 
-Pero el alcalde no cumplió su promesa.
-—¡Aquí tienes diez monedas y suficiente!
+Pero el alcalde no cumpliÃ³ su promesa.
+â€”Â¡AquÃ­ tienes diez monedas y suficiente!
 
-El flautista lo miró fijo y no dijo nada. Tocó su flauta otra vez, pero con una melodía diferente.
+El flautista lo mirÃ³ fijo y no dijo nada. TocÃ³ su flauta otra vez, pero con una melodÃ­a diferente.
 
-Los niños de Hamelín salieron de sus casas siguiendo la música como si soñaran. {childName} también oyó la melodía desde la colina donde recogía flores.
+Los niÃ±os de HamelÃ­n salieron de sus casas siguiendo la mÃºsica como si soÃ±aran. {childName} tambiÃ©n oyÃ³ la melodÃ­a desde la colina donde recogÃ­a flores.
 
-{childName} corrió al pueblo y vio a los niños marchando detrás del flautista hacia la montaña.
-—¡Parad! ¡Despertad! —gritó {childName}.
+{childName} corriÃ³ al pueblo y vio a los niÃ±os marchando detrÃ¡s del flautista hacia la montaÃ±a.
+â€”Â¡Parad! Â¡Despertad! â€”gritÃ³ {childName}.
 
-Pero la música era tan poderosa...
+Pero la mÃºsica era tan poderosa...
 
-{childName} corrió al alcalde.
-—¡Señor alcalde, pague al flautista lo que prometió! ¡Los niños están siguiéndole!
+{childName} corriÃ³ al alcalde.
+â€”Â¡SeÃ±or alcalde, pague al flautista lo que prometiÃ³! Â¡Los niÃ±os estÃ¡n siguiÃ©ndole!
 
-El alcalde estaba tan asustado que sacó el cofre con las cien monedas.
-—¡Devolved a los niños!
+El alcalde estaba tan asustado que sacÃ³ el cofre con las cien monedas.
+â€”Â¡Devolved a los niÃ±os!
 
-{childName} corrió montaña arriba tocando el tambor con todas sus fuerzas. ¡Bum bum bum! El sonido del tambor rompió el hechizo de la flauta.
+{childName} corriÃ³ montaÃ±a arriba tocando el tambor con todas sus fuerzas. Â¡Bum bum bum! El sonido del tambor rompiÃ³ el hechizo de la flauta.
 
-Los niños parpadearon confundidos. El flautista, sorprendido de que alguien hubiera pensado tan rápido, bajó del monte.
+Los niÃ±os parpadearon confundidos. El flautista, sorprendido de que alguien hubiera pensado tan rÃ¡pido, bajÃ³ del monte.
 
-—Eres listo, pequeño —dijo el flautista—. Recuerda siempre: las promesas se cumplen.
+â€”Eres listo, pequeÃ±o â€”dijo el flautistaâ€”. Recuerda siempre: las promesas se cumplen.
 
-Le dio al alcalde una mirada de advertencia, tomó sus cien monedas y se marchó dejando en el aire una melodía dulcísima.
+Le dio al alcalde una mirada de advertencia, tomÃ³ sus cien monedas y se marchÃ³ dejando en el aire una melodÃ­a dulcÃ­sima.
 
-{childName} reunió a todos los niños y los acompañó a casa, donde los padres los abrazaron sin soltarlos en mucho tiempo. 🎶
+{childName} reuniÃ³ a todos los niÃ±os y los acompaÃ±Ã³ a casa, donde los padres los abrazaron sin soltarlos en mucho tiempo. ðŸŽ¶
 
-Fin. ✨`,
-  coverEmoji: '🎶',
-  theme: 'música',
+Fin. âœ¨`,
+  coverEmoji: 'ðŸŽ¶',
+  theme: 'mÃºsica',
   ageMin: 4,
   ageMax: 9,
   isPremium: false,
   illustrationSlug: 'flautista',
   readingTimeMinutes: 5,
-  tags: ['música', 'honestidad', 'aventura', 'valentía'],
+  tags: ['mÃºsica', 'honestidad', 'aventura', 'valentÃ­a'],
 }
 
 export const FREE_NEW_STORIES: ClassicStory[] = [
@@ -639,3 +639,4 @@ export const FREE_NEW_STORIES: ClassicStory[] = [
   tres_osos,
   flautista_hamelin,
 ]
+
