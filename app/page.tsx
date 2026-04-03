@@ -403,6 +403,17 @@ export default function LandingPage() {
         <p className="text-white/30 text-xs mt-4 font-bold">
           © {new Date().getFullYear()} Mi Mundo Mágico · Hecho con ❤️ para padres y sus pequeños
         </p>
+        <div className="flex items-center justify-center gap-4 mt-4 flex-wrap">
+          <Link href="/legal/aviso-legal" className="text-white/30 hover:text-white/60 text-xs font-bold transition-colors">Aviso Legal</Link>
+          <span className="text-white/20 text-xs">·</span>
+          <Link href="/legal/privacidad" className="text-white/30 hover:text-white/60 text-xs font-bold transition-colors">Privacidad</Link>
+          <span className="text-white/20 text-xs">·</span>
+          <Link href="/legal/terminos" className="text-white/30 hover:text-white/60 text-xs font-bold transition-colors">Términos</Link>
+          <span className="text-white/20 text-xs">·</span>
+          <Link href="/legal/cookies" className="text-white/30 hover:text-white/60 text-xs font-bold transition-colors">Cookies</Link>
+          <span className="text-white/20 text-xs">·</span>
+          <a href="mailto:legal@mimundomagico.es" className="text-white/30 hover:text-white/60 text-xs font-bold transition-colors">legal@mimundomagico.es</a>
+        </div>
       </footer>
     </main>
   )
