@@ -5,15 +5,8 @@ let _client: SupabaseClient | null = null
 
 export function getSupabaseClient(): SupabaseClient {
   if (!_client) {
-    const url = process.env.NEXT_PUBLIC_SUPABASE_URL
-    const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-
-    if (!url || !key || url === 'your_supabase_project_url') {
-      throw new Error(
-        'Supabase env vars not set. Copy .env.local and fill in NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY.'
-      )
-    }
-
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://ptrpvghhvoaudddqgkyx.supabase.co'
+    const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB0cnB2Z2hodm9hdWRkZHFna3l4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUyNDM3OTAsImV4cCI6MjA5MDgxOTc5MH0.N_YURhFVidO7il1o-JHcnMFqf29eGsRIcKXRHVfypHI'
     _client = createClient(url, key)
   }
   return _client
