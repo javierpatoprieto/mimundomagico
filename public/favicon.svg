@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7C3AED"/>
+      <stop offset="100%" style="stop-color:#DB2777"/>
+    </linearGradient>
+    <linearGradient id="star" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FDE68A"/>
+      <stop offset="100%" style="stop-color:#F59E0B"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background rounded square -->
+  <rect width="64" height="64" rx="16" fill="url(#bg)"/>
+
+  <!-- Sparkles corners -->
+  <circle cx="12" cy="12" r="2.5" fill="#FDE68A" opacity="0.9"/>
+  <circle cx="52" cy="10" r="1.8" fill="#FDE68A" opacity="0.7"/>
+  <circle cx="54" cy="52" r="2" fill="#FDE68A" opacity="0.8"/>
+  <circle cx="10" cy="52" r="1.5" fill="#FDE68A" opacity="0.6"/>
+
+  <!-- Main star centered -->
+  <path d="M32 8 L36 22 L50 22 L39 30.5 L43 44 L32 36 L21 44 L25 30.5 L14 22 L28 22 Z"
+        fill="url(#star)" filter="url(#glow)"/>
+
+  <!-- Wand -->
+  <line x1="36" y1="38" x2="50" y2="56" stroke="#E9D5FF" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="50" cy="56" r="3" fill="#FDE68A"/>
+</svg>

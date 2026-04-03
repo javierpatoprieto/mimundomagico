@@ -11,15 +11,29 @@ const nunito = Nunito({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? 'https://mimundomagico.app'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? 'https://mimundomagico.es'),
   title: 'Mi Mundo Mágico — Cuentos personalizados para tus hijos',
   description:
     'El cuento donde tu hijo/a es el héroe. Cuentos clásicos personalizados y cuentos únicos creados especialmente para ellos.',
   keywords: ['cuentos infantiles', 'cuentos personalizados', 'historias para niños', 'bedtime stories'],
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
   openGraph: {
-    title: 'Mi Mundo Mágico',
-    description: 'El cuento donde tu hijo/a es el héroe ✨',
+    title: 'Mi Mundo Mágico ✨',
+    description: 'El cuento donde tu hijo/a es el héroe. Cuentos personalizados con IA.',
+    url: 'https://mimundomagico.es',
+    siteName: 'Mi Mundo Mágico',
     images: ['/og-image.png'],
+    locale: 'es_ES',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Mi Mundo Mágico ✨',
+    description: 'El cuento donde tu hijo/a es el héroe.',
   },
 }
 

@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" fill="none">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7C3AED"/>
+      <stop offset="100%" style="stop-color:#DB2777"/>
+    </linearGradient>
+    <linearGradient id="starGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FDE68A"/>
+      <stop offset="100%" style="stop-color:#F59E0B"/>
+    </linearGradient>
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#7C3AED"/>
+      <stop offset="50%" style="stop-color:#A855F7"/>
+      <stop offset="100%" style="stop-color:#EC4899"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Icon background circle -->
+  <rect x="4" y="4" width="72" height="72" rx="20" fill="url(#bgGrad)"/>
+
+  <!-- Sparkle dots -->
+  <circle cx="18" cy="18" r="2.5" fill="#FDE68A" opacity="0.9"/>
+  <circle cx="62" cy="16" r="1.8" fill="#FDE68A" opacity="0.7"/>
+  <circle cx="66" cy="58" r="2.2" fill="#FDE68A" opacity="0.8"/>
+  <circle cx="14" cy="60" r="1.5" fill="#FDE68A" opacity="0.6"/>
+
+  <!-- Main star -->
+  <path d="M40 14 L43.5 26.5 L56 26.5 L46 34 L49.5 46.5 L40 39 L30.5 46.5 L34 34 L24 26.5 L36.5 26.5 Z"
+        fill="url(#starGrad)" filter="url(#glow)"/>
+
+  <!-- Small star top right -->
+  <path d="M58 10 L59.2 14 L63 14 L60 16.5 L61.2 20.5 L58 18 L54.8 20.5 L56 16.5 L53 14 L56.8 14 Z"
+        fill="#FDE68A" opacity="0.85"/>
+
+  <!-- Small star bottom left -->
+  <path d="M16 50 L17 53 L20 53 L17.5 55 L18.5 58 L16 56.5 L13.5 58 L14.5 55 L12 53 L15 53 Z"
+        fill="#FDE68A" opacity="0.75"/>
+
+  <!-- Magic wand -->
+  <line x1="44" y1="42" x2="56" y2="66" stroke="#E9D5FF" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="56" cy="66" r="3" fill="#FDE68A"/>
+
+  <!-- Text: Mi Mundo -->
+  <text x="86" y="34"
+        font-family="'Segoe UI', system-ui, -apple-system, sans-serif"
+        font-weight="800"
+        font-size="22"
+        letter-spacing="-0.5"
+        fill="url(#textGrad)">Mi Mundo</text>
+
+  <!-- Text: Mágico -->
+  <text x="86" y="62"
+        font-family="'Segoe UI', system-ui, -apple-system, sans-serif"
+        font-weight="900"
+        font-size="28"
+        letter-spacing="-1"
+        fill="#1F0A3A">Mágico</text>
+
+  <!-- Decorative star after Mágico -->
+  <text x="270" y="62"
+        font-size="22">✨</text>
+</svg>
