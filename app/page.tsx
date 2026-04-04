@@ -283,15 +283,14 @@ export default function LandingPage() {
             },
             {
               icon: <Wand2 size={28} className="text-amber-400" />,
-              title: 'Cuentos únicos y mágicos',
-              desc: 'Con Premium, creamos cuentos con los temas favoritos, amigos, mascota y comida preferida de tu peque. 100% personalizado.',
+              title: 'Cuentos únicos para tu peque',
+              desc: 'Con Premium creamos cuentos totalmente nuevos con los temas favoritos, amigos, mascota y comida preferida de tu hijo/a. Ningún niño tiene el mismo cuento.',
               premium: true,
             },
             {
               icon: <Volume2 size={28} className="text-pink-400" />,
-              title: 'Narración de audio 🔊',
-              desc: 'Próximamente: el cuento se lee solo en voz alta. Para las noches de "un cuento más, papi".',
-              soon: true,
+              title: 'Narración en voz alta 🔊',
+              desc: 'El cuento se lee solo en voz alta con una voz cálida y expresiva. Para las noches de "un cuento más, papi".',
             },
             {
               icon: <Heart size={28} className="text-red-400" />,
@@ -319,7 +318,7 @@ export default function LandingPage() {
                 )}
                 {f.soon && (
                   <span className="text-xs font-black bg-pink-400/20 text-pink-300 border border-pink-400/30 px-2 py-0.5 rounded-full">
-                    Fase 2
+                    Premium
                   </span>
                 )}
               </div>
@@ -366,15 +365,15 @@ export default function LandingPage() {
           <div className="glass rounded-3xl p-8 border border-amber-400/30 relative overflow-hidden">
             <div className="absolute top-4 right-4 text-3xl float">👑</div>
             <div className="badge-premium inline-block mb-4 text-base px-4 py-1.5">PREMIUM</div>
-            <div className="text-5xl font-black text-white mb-1">$4<span className="text-3xl">,99</span></div>
+            <div className="text-5xl font-black text-white mb-1">2<span className="text-3xl">,99€</span></div>
             <p className="text-white/50 text-sm mb-6 font-bold">al mes · Cancela cuando quieras</p>
             <ul className="space-y-3 mb-8">
               {[
                 'Todo lo de gratis +',
-                'Cuentos mágicos ilimitados',
-                'Personalización total (amigos, mascota, comida)',
-                'Narración en audio 🔊 (Fase 2)',
-                'Nuevos cuentos cada semana',
+                'Cuentos nuevos ilimitados solo para tu hijo/a',
+                'Con sus amigos, mascota y comida favorita dentro',
+                'Narración en voz alta incluida 🔊',
+                'Un cuento nuevo cada semana',
                 'Sin anuncios nunca',
               ].map((item) => (
                 <li key={item} className="flex items-start gap-2 text-sm text-white/80 font-bold">
