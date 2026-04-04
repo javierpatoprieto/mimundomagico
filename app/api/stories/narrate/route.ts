@@ -8,7 +8,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 
-const VOICE_ID = process.env.ELEVENLABS_VOICE_ID ?? 'MF3mGyEYCl7XYWbV9V6O' // Elli — warm, expressive, multilingual
+const VOICE_ID = process.env.ELEVENLABS_VOICE_ID ?? 'EXAVITQu4vr4xnSDxMaL' // Bella — warm, multilingual, free tier
 
 async function generateWithElevenLabs(text: string): Promise<Buffer> {
   const res = await fetch(
@@ -34,6 +34,7 @@ async function generateWithElevenLabs(text: string): Promise<Buffer> {
   )
   if (!res.ok) {
     const err = await res.text()
+    console.error(`[narrate] ElevenLabs ${res.status}:`, err)
     throw new Error(`ElevenLabs error ${res.status}: ${err}`)
   }
   return Buffer.from(await res.arrayBuffer())
@@ -85,7 +86,8 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ audioUrl: publicUrl })
   } catch (err) {
-    console.error('[narrate]', err)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    const msg = err instanceof Error ? err.message : String(err)
+    console.error('[narrate]', msg)
+    return NextResponse.json({ error: msg }, { status: 500 })
   }
 }
