@@ -316,11 +316,7 @@ export default function LandingPage() {
                     Premium
                   </span>
                 )}
-                {f.soon && (
-                  <span className="text-xs font-black bg-pink-400/20 text-pink-300 border border-pink-400/30 px-2 py-0.5 rounded-full">
-                    Premium
-                  </span>
-                )}
+
               </div>
               <h3 className="font-black text-lg font-display mb-2 text-white">{f.title}</h3>
               <p className="text-white/60 text-sm leading-relaxed">{f.desc}</p>
