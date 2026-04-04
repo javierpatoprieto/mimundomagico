@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>
@@ -57,7 +58,7 @@ export function PWAInstallPrompt() {
           ×
         </button>
         <div className="flex items-center gap-3 mb-3">
-          <img src="/icons/icon-192.png" alt="Mi Mundo Mágico" className="w-12 h-12 rounded-xl" />
+          <Image src="/icons/icon-192.png" alt="Mi Mundo Mágico" width={48} height={48} className="rounded-xl" />
           <div>
             <p className="font-black text-sm">¡Instala la app! 📲</p>
             <p className="text-white/70 text-xs">Acceso rápido desde tu móvil</p>

@@ -20,10 +20,6 @@ export default function RegisterPage() {
   const [done, setDone] = useState(false)
   const [demoToast, setDemoToast] = useState(false)
 
-  const handleDemoToast = () => {
-    setDemoToast(true)
-    setTimeout(() => setDemoToast(false), 3500)
-  }
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault()

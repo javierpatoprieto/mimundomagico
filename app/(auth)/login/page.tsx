@@ -43,10 +43,6 @@ export default function LoginPage() {
     setLoading(false)
   }
 
-  const handleDemoToast = () => {
-    setDemoToast(true)
-    setTimeout(() => setDemoToast(false), 3500)
-  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-violet-950 via-indigo-950 to-purple-950 flex items-center justify-center px-4">
