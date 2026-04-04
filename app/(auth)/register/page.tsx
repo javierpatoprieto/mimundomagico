@@ -9,7 +9,6 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
 import { FloatingStars } from '@/components/ui/Stars'
 import { Eye, EyeOff, CheckCircle } from 'lucide-react'
-import { SocialLoginButtons } from '@/components/SocialLoginButtons'
 
 export default function RegisterPage() {
   const router = useRouter()
@@ -119,18 +118,6 @@ export default function RegisterPage() {
 
         {/* Card */}
         <div className="glass rounded-3xl p-8 shadow-2xl">
-          {/* Social register buttons */}
-          <SocialLoginButtons mode="register" onDemoToast={handleDemoToast} />
-
-          {/* Divider */}
-          <div className="flex items-center gap-3 my-6">
-            <div className="flex-1 h-px bg-white/15" />
-            <span className="text-white/40 text-xs font-bold uppercase tracking-wider whitespace-nowrap">
-              — o continúa con —
-            </span>
-            <div className="flex-1 h-px bg-white/15" />
-          </div>
-
           <form onSubmit={handleRegister} className="space-y-5">
             <div>
               <label className="block text-sm font-semibold text-white/80 mb-1.5">Email</label>

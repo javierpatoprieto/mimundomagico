@@ -11,7 +11,6 @@ import { Button } from '@/components/ui/Button'
 import { FloatingStars } from '@/components/ui/Stars'
 import { Eye, EyeOff } from 'lucide-react'
 import { enterDemoMode } from '@/lib/demo'
-import { SocialLoginButtons } from '@/components/SocialLoginButtons'
 
 export default function LoginPage() {
   const router = useRouter()
@@ -74,18 +73,6 @@ export default function LoginPage() {
 
         {/* Card */}
         <div className="glass rounded-3xl p-8 shadow-2xl">
-          {/* Social login buttons */}
-          <SocialLoginButtons mode="login" onDemoToast={handleDemoToast} />
-
-          {/* Divider */}
-          <div className="flex items-center gap-3 my-6">
-            <div className="flex-1 h-px bg-white/15" />
-            <span className="text-white/40 text-xs font-bold uppercase tracking-wider whitespace-nowrap">
-              — o continúa con —
-            </span>
-            <div className="flex-1 h-px bg-white/15" />
-          </div>
-
           <form onSubmit={handleLogin} className="space-y-5">
             <div>
               <label className="block text-sm font-semibold text-white/80 mb-1.5">
