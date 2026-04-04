@@ -29,7 +29,7 @@ export default function AvisoLegalPage() {
 
           <section>
             <h2 className="text-xl font-black text-gray-900 mb-3">2. Objeto</h2>
-            <p>El presente Aviso Legal regula el acceso y uso del sitio web <strong>mimundomagico.es</strong> (en adelante, el "Sitio"), titularidad de Javier Pato Prieto.</p>
+            <p>El presente Aviso Legal regula el acceso y uso del sitio web <strong>mimundomagico.es</strong> (en adelante, el &ldquo;Sitio&rdquo;), titularidad de Javier Pato Prieto.</p>
             <p className="mt-3">El acceso al Sitio implica la aceptación plena y sin reservas de las presentes condiciones.</p>
           </section>
 
