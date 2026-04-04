@@ -22,6 +22,7 @@ function StoryContent() {
   const [isFavorite, setIsFavorite] = useState(false)
   const [userStoryId, setUserStoryId] = useState<string | null>(null)
   const [audioUrl, setAudioUrl] = useState<string | null>(null)
+  const [generatingAudio, setGeneratingAudio] = useState(false)
   const [aiContent, setAiContent] = useState<string | null>(null)
   const [aiTitle, setAiTitle] = useState<string | null>(null)
   const [aiEmoji, setAiEmoji] = useState<string | null>(null)
@@ -144,6 +145,30 @@ function StoryContent() {
       .eq('id', userStoryId)
   }
 
+  // Auto-generate audio if Premium user and no audio yet
+  useEffect(() => {
+    if (!profile?.is_premium) return
+    if (!userStoryId) return
+    if (audioUrl || generatingAudio) return
+    if (isDemoMode()) return
+
+    const text = aiContent || (story ? personalizeStory(story.template, activeChild?.name ?? '') : null)
+    if (!text) return
+
+    setGeneratingAudio(true)
+    fetch('/api/stories/narrate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userStoryId, text }),
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.audioUrl) setAudioUrl(data.audioUrl)
+      })
+      .catch(console.error)
+      .finally(() => setGeneratingAudio(false))
+  }, [profile?.is_premium, userStoryId, audioUrl, aiContent, story, activeChild])
+
   const isLoading = authLoading || loadingAi || (!story && isAiStory && !aiContent) || !activeChild
 
   if (isLoading) {
@@ -176,6 +201,7 @@ function StoryContent() {
         isPremium={true}
         userPremium={profile?.is_premium}
         audioUrl={audioUrl}
+        generatingAudio={generatingAudio}
         userStoryId={userStoryId ?? undefined}
         onFavoriteToggle={handleFavoriteToggle}
         onProgressUpdate={handleProgressUpdate}
@@ -199,6 +225,7 @@ function StoryContent() {
       isPremium={story.isPremium}
       userPremium={profile?.is_premium}
       audioUrl={audioUrl}
+      generatingAudio={generatingAudio}
       userStoryId={userStoryId ?? undefined}
       onFavoriteToggle={handleFavoriteToggle}
       onProgressUpdate={handleProgressUpdate}

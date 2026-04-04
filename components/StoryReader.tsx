@@ -36,6 +36,7 @@ interface StoryReaderProps {
   isPremium?: boolean
   userPremium?: boolean
   audioUrl?: string | null
+  generatingAudio?: boolean
   userStoryId?: string
   onFavoriteToggle?: () => void
   onProgressUpdate?: (progress: number) => void
@@ -97,11 +98,13 @@ function AudioControls({
   isPremium,
   userPremium,
   nightMode,
+  generatingAudio,
 }: {
   audioUrl?: string | null
   isPremium?: boolean
   userPremium?: boolean
   nightMode: NightMode
+  generatingAudio?: boolean
 }) {
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const [playing, setPlaying] = useState(false)
@@ -112,6 +115,7 @@ function AudioControls({
 
   const hasAudio = Boolean(audioUrl)
   const locked = isPremium ? !userPremium : false
+  const isGenerating = generatingAudio && !hasAudio
 
   const toggle = useCallback(() => {
     if (!audioRef.current || !hasAudio) return
@@ -205,10 +209,10 @@ function AudioControls({
         ) : (
           <div>
             <p className="text-sm font-black opacity-80">
-              {locked ? '🔒 Narración Premium' : '🔊 Narración — Fase 2'}
+              {locked ? '🔒 Narración Premium' : isGenerating ? '🎙️ Generando audio...' : '🔊 Narración de voz'}
             </p>
             <p className="text-xs opacity-50 leading-tight font-bold">
-              {locked ? 'Hazte Premium para escuchar' : 'El cuento se leerá solo muy pronto'}
+              {locked ? 'Hazte Premium para escuchar' : isGenerating ? 'ElevenLabs está narrando el cuento ✨' : 'Se generará automáticamente'}
             </p>
           </div>
         )}
@@ -239,6 +243,7 @@ export function StoryReader({
   isPremium,
   userPremium,
   audioUrl,
+  generatingAudio,
   onFavoriteToggle,
   onProgressUpdate,
 }: StoryReaderProps) {
@@ -464,6 +469,7 @@ export function StoryReader({
           isPremium={isPremium}
           userPremium={userPremium}
           nightMode={nightMode}
+          generatingAudio={generatingAudio}
         />
       </div>
 
