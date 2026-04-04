@@ -3,6 +3,7 @@ import { Nunito } from 'next/font/google'
 import './globals.css'
 import { DemoBanner } from '@/components/DemoBanner'
 import { CookieBanner } from '@/components/CookieBanner'
+import { PWAInstallPrompt } from '@/components/PWAInstallPrompt'
 
 const nunito = Nunito({
   subsets: ['latin'],
@@ -17,10 +18,19 @@ export const metadata: Metadata = {
   description:
     'El cuento donde tu hijo/a es el héroe. Cuentos clásicos personalizados y cuentos únicos creados especialmente para ellos.',
   keywords: ['cuentos infantiles', 'cuentos personalizados', 'historias para niños', 'bedtime stories'],
+  manifest: '/manifest.json',
   icons: {
     icon: '/favicon.svg',
     shortcut: '/favicon.svg',
-    apple: '/favicon.svg',
+    apple: '/icons/icon-192.png',
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'Mi Mundo Mágico',
+  },
+  formatDetection: {
+    telephone: false,
   },
   openGraph: {
     title: 'Mi Mundo Mágico ✨',
@@ -44,6 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="bg-white text-gray-900 antialiased">
         <DemoBanner />
         <CookieBanner />
+        <PWAInstallPrompt />
         {children}
       </body>
     </html>
