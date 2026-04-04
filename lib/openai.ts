@@ -1,4 +1,4 @@
-import OpenAI from 'openai'
+﻿import OpenAI from 'openai'
 
 // ─── Story Creation Types ────────────────────────────────────────────────────
 
@@ -187,56 +187,34 @@ export async function generateStory(params: StoryGenerationParams): Promise<stri
     characters,
   } = params
 
-  const friendLine = bestFriendName
-    ? `Su mejor amigo/a se llama ${bestFriendName} (inclúyelo/la como personaje importante).`
+  // Build mandatory personal details
+  const mandatory: string[] = []
+  if (bestFriendName) mandatory.push(`OBLIGATORIO: El mejor amigo/a de ${name} se llama "${bestFriendName}". Debe aparecer con ese nombre exacto al menos 2 veces y tener un papel activo.`)
+  if (petName) mandatory.push(`OBLIGATORIO: La mascota de ${name} se llama "${petName}". Debe aparecer con ese nombre exacto y hacer algo importante o gracioso.`)
+  if (favoriteFood) mandatory.push(`OBLIGATORIO: La comida favorita de ${name} es "${favoriteFood}". Debe aparecer en la historia (como recompensa, ingrediente magico, o lo que comen al final).`)
+  if (favoriteColors && favoriteColors.length > 0) mandatory.push(`OBLIGATORIO: Los colores favoritos de ${name} son ${favoriteColors.join(' y ')}. Usalos para describir escenario, ropa u objetos magicos.`)
+  if (characters) mandatory.push(`Personajes adicionales: ${characters}.`)
+
+  const mandatoryBlock = mandatory.length > 0
+    ? `\n\nDETALLES PERSONALES - DEBES INCLUIR TODOS (no los omitas):\n${mandatory.join('\n')}`
     : ''
-  const petLine = petName
-    ? `Su mascota se llama ${petName} (inclúyela de forma adorable en la historia).`
-    : ''
-  const foodLine = favoriteFood
-    ? `Su comida favorita es ${favoriteFood} (inclúyela de forma divertida y mágica en la historia).`
-    : ''
-  const colorLine =
-    favoriteColors && favoriteColors.length > 0
-      ? `Sus colores favoritos son ${favoriteColors.join(', ')} (úsalos para describir el entorno mágico).`
-      : ''
-  const extraLine = characters ? `Personajes adicionales: ${characters}.` : ''
 
-  const prompt = `Escribe un cuento mágico en español para un niño/a de ${age} años llamado/a ${name}.
-
-Tema favorito: ${theme}
-${friendLine}
-${petLine}
-${foodLine}
-${colorLine}
-${extraLine}
-
-El cuento debe tener ~400 palabras, lenguaje simple y poético, emojis ocasionales, final feliz.
-Protagonista siempre es ${name}. Hazlo único y mágico.
-
-Estructura:
-- Párrafo 1-2: Introducción mágica donde ${name} descubre algo extraordinario
-- Párrafo 3-5: La emocionante aventura, con los personajes especiales
-- Párrafo 6-7: El momento de magia donde todo se resuelve
-- Párrafo final: Final feliz y cálido, ${name} se va a dormir lleno/a de felicidad
-
-Divide el cuento en párrafos cortos de 2-3 oraciones. Usa emojis ocasionalmente 🌟✨.`
+  const prompt = `Escribe un cuento magico en espanol para ${name}, que tiene ${age} annos.\n\nTEMA: ${theme}\n\nPROTAGONISTA: ${name} es el heroe. Usa su nombre con frecuencia.${mandatoryBlock}\n\nINSTRUCCIONES:\n- Exactamente ~400 palabras\n- Parrafos cortos de 2-3 oraciones\n- Lenguaje simple y calido para ninos\n- Emojis ocasionales\n- Final feliz\n- Los nombres deben aparecer exactamente como se indican arriba\n\nESTRUCTURA:\n1. ${name} descubre algo magico relacionado con "${theme}"\n2. Comienza la aventura${bestFriendName ? ` junto a ${bestFriendName}` : ''}${petName ? ` y su mascota ${petName}` : ''}\n3. Se encuentran con un desafio o misterio\n4. Lo resuelven de forma ingeniosa\n5. Final feliz: ${name}${favoriteFood ? ` celebra comiendo ${favoriteFood}` : ' llega a casa contento'} y se duerme sonando con mas aventuras`
 
   const response = await openai.chat.completions.create({
     model: 'gpt-4o',
     messages: [
       {
         role: 'system',
-        content:
-          'Eres un narrador de cuentos infantiles mágico y poético. Creas historias llenas de amor, aventura y ternura para que los padres las lean a sus hijos a la hora de dormir. Cada cuento debe sentirse como un abrazo cálido y especial. Usa los detalles personales del niño/a para hacer la historia completamente única e irrepetible.',
+        content: 'Eres un narrador de cuentos infantiles. Sigues instrucciones al pie de la letra. Cuando algo es OBLIGATORIO, SIEMPRE lo incluyes usando el nombre exacto indicado. Nunca omites detalles personales del nino/a.',
       },
       {
         role: 'user',
         content: prompt,
       },
     ],
-    max_tokens: 900,
-    temperature: 0.85,
+    max_tokens: 1000,
+    temperature: 0.75,
   })
 
   return response.choices[0]?.message?.content || ''
