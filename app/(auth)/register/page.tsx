@@ -18,9 +18,6 @@ export default function RegisterPage() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [done, setDone] = useState(false)
-  const [demoToast, setDemoToast] = useState(false)
-
-
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
@@ -87,13 +84,6 @@ export default function RegisterPage() {
       <div className="fixed inset-0 pointer-events-none">
         <FloatingStars count={25} />
       </div>
-
-      {/* Demo toast */}
-      {demoToast && (
-        <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50 bg-amber-500 text-white font-bold rounded-2xl px-6 py-3 shadow-2xl text-sm animate-bounce">
-          En modo demo — regístrate para usar login social 🧙‍♂️
-        </div>
-      )}
 
       <div className="relative z-10 w-full max-w-md">
         {/* Logo */}
