@@ -29,7 +29,7 @@ export function rateLimit(
 // Cleanup old entries periodically
 setInterval(() => {
   const now = Date.now()
-  for (const [key, val] of store.entries()) {
+  store.forEach((val, key) => {
     if (now > val.resetAt) store.delete(key)
-  }
-}, 60_000)
+  })
+}, 60000)
