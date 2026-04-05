@@ -7,6 +7,8 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
+import { getAuthenticatedUserId } from '@/lib/auth-server'
+import { rateLimit } from '@/lib/rate-limit'
 
 const VOICE_ID = process.env.ELEVENLABS_VOICE_ID ?? 'EXAVITQu4vr4xnSDxMaL' // Bella — warm, multilingual, free tier
 
@@ -42,6 +44,18 @@ async function generateWithElevenLabs(text: string): Promise<Buffer> {
 
 export async function POST(req: NextRequest) {
   try {
+    // Verify JWT
+    const authUserId = await getAuthenticatedUserId(req)
+    if (!authUserId) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
+    // Rate limit: 20 audio requests per hour per user
+    const rl = rateLimit(`narrate:${authUserId}`, 20, 60 * 60 * 1000)
+    if (!rl.allowed) {
+      return NextResponse.json({ error: 'Too many requests. Try again later.' }, { status: 429 })
+    }
+
     const body = await req.json()
     const { userStoryId, text } = body
 
@@ -50,6 +64,22 @@ export async function POST(req: NextRequest) {
         { error: 'userStoryId and text are required' },
         { status: 400 }
       )
+    }
+
+    // Verify the user_story belongs to the authenticated user
+    const supabaseCheck = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!
+    )
+    const { data: storyCheck } = await supabaseCheck
+      .from('user_stories')
+      .select('id')
+      .eq('id', userStoryId)
+      .eq('user_id', authUserId)
+      .single()
+
+    if (!storyCheck) {
+      return NextResponse.json({ error: 'Story not found' }, { status: 403 })
     }
 
     // Trim text to ElevenLabs limit (5000 chars on free tier)

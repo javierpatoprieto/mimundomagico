@@ -1,13 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createCheckoutSession } from '@/lib/stripe'
 import { createServerClient } from '@/lib/supabase-server'
+import { getAuthenticatedUserId } from '@/lib/auth-server'
 
 export async function POST(req: NextRequest) {
   try {
-    const { userId, email } = await req.json()
+    // Verify JWT — never trust userId from body
+    const authUserId = await getAuthenticatedUserId(req)
+    if (!authUserId) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
 
-    if (!userId || !email) {
-      return NextResponse.json({ error: 'Missing userId or email' }, { status: 400 })
+    const { email } = await req.json()
+    const userId = authUserId
+
+    if (!email) {
+      return NextResponse.json({ error: 'Missing email' }, { status: 400 })
     }
 
     const supabaseAdmin = createServerClient()

@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import OpenAI from 'openai'
 import { createServerClient } from '@/lib/supabase-server'
+import { getAuthenticatedUserId } from '@/lib/auth-server'
+import { rateLimit } from '@/lib/rate-limit'
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
 
@@ -92,17 +94,43 @@ function buildPrompt(body: Record<string, unknown>, childName: string, age: numb
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json()
-    const { userId, childProfileId } = body
+    // Verify JWT
+    const authUserId = await getAuthenticatedUserId(req)
+    if (!authUserId) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
 
+    // Rate limit: 10 stories per hour per user
+    const rl = rateLimit(`generate:${authUserId}`, 10, 60 * 60 * 1000)
+    if (!rl.allowed) {
+      return NextResponse.json({ error: 'Too many requests. Try again later.' }, { status: 429 })
+    }
+
+    const body = await req.json()
+    const { childProfileId } = body
+
+    // Always use the authenticated user ID, never trust the body
+    const userId = authUserId
     const name = body.childName || body.name
     const age = body.age || 4
 
-    if (!name || !userId || !childProfileId) {
-      return NextResponse.json({ error: 'Missing required fields: name, userId, childProfileId' }, { status: 400 })
+    if (!name || !childProfileId) {
+      return NextResponse.json({ error: 'Missing required fields: name, childProfileId' }, { status: 400 })
     }
 
     const supabaseAdmin = createServerClient()
+
+    // Verify child profile belongs to this user
+    const { data: childCheck } = await supabaseAdmin
+      .from('child_profiles')
+      .select('id')
+      .eq('id', childProfileId)
+      .eq('user_id', userId)
+      .single()
+
+    if (!childCheck) {
+      return NextResponse.json({ error: 'Child profile not found' }, { status: 403 })
+    }
 
     const { data: profile } = await supabaseAdmin
       .from('profiles')

@@ -65,7 +65,7 @@ export default function AdminPage() {
       setUserEmail(email)
       setAuthorized(true)
       loadStats()
-      loadSettings(email)
+      loadSettings()
     })
   }, [router])
 
@@ -118,9 +118,15 @@ export default function AdminPage() {
     setLoading(false)
   }
 
-  const loadSettings = async (email: string) => {
+  const getAuthHeader = async () => {
+    const { data } = await supabase.auth.getSession()
+    return data.session?.access_token ? `Bearer ${data.session.access_token}` : ''
+  }
+
+  const loadSettings = async () => {
+    const auth = await getAuthHeader()
     const res = await fetch('/api/admin/settings', {
-      headers: { 'x-admin-email': email }
+      headers: { 'Authorization': auth }
     })
     const data = await res.json()
     setSettings(data.settings || [])
@@ -128,9 +134,10 @@ export default function AdminPage() {
 
   const updateSetting = async (key: string, value: string) => {
     setSaving(key)
+    const auth = await getAuthHeader()
     await fetch('/api/admin/settings', {
       method: 'PATCH',
-      headers: { 'Content-Type': 'application/json', 'x-admin-email': userEmail },
+      headers: { 'Content-Type': 'application/json', 'Authorization': auth },
       body: JSON.stringify({ key, value })
     })
     setSettings(prev => prev.map(s => s.key === key ? { ...s, value } : s))
