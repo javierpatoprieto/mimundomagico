@@ -196,7 +196,7 @@ export default function AdminPage() {
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <button onClick={() => { loadStats(); loadSettings(userEmail) }}
+          <button onClick={() => { loadStats(); loadSettings() }}
             className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-sm font-bold transition-colors">
             <RefreshCw size={14} />Actualizar
           </button>
