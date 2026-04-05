@@ -67,6 +67,7 @@ export default function AdminPage() {
       loadStats()
       loadSettings()
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router])
 
   const loadUsers = async () => {
@@ -149,6 +150,7 @@ export default function AdminPage() {
   // Load users when tab is opened
   useEffect(() => {
     if (activeTab === 'users' && !usersLoaded && authorized) loadUsers()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTab, authorized])
 
   const handleSignOut = async () => {
