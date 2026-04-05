@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/Button'
 import { FloatingStars } from '@/components/ui/Stars'
 import { Star, BookOpen, Wand2, Volume2, Heart, Shield, CheckCircle } from 'lucide-react'
 import { useState, useEffect } from 'react'
+import { getSettingsClient } from '@/lib/site-settings'
 import type { ComponentType } from 'react'
 import {
   CaperucitaIllustration,
@@ -49,6 +50,11 @@ const FLOATING_EMOJIS = [
 export default function LandingPage() {
   const [nameIndex, setNameIndex] = useState(0)
   const [visible, setVisible] = useState(true)
+  const [settings, setSettings] = useState<Record<string,string>>({})
+
+  useEffect(() => {
+    getSettingsClient().then(s => setSettings(s))
+  }, [])
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -130,7 +136,7 @@ export default function LandingPage() {
       <section className="relative z-10 text-center px-6 pt-16 pb-16 max-w-4xl mx-auto">
         <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2 text-sm text-white/80 mb-8 font-bold">
           <Star size={14} className="text-yellow-400 fill-yellow-400" />
-          7 cuentos clásicos GRATIS · 1 cuento personalizado de regalo
+          {settings.hero_badge || '7 cuentos clásicos GRATIS · 1 cuento personalizado de regalo'}
         </div>
 
         <h1 className="text-5xl md:text-7xl font-black font-display leading-tight mb-6">
@@ -147,9 +153,7 @@ export default function LandingPage() {
         </h1>
 
         <p className="text-xl text-white/70 mb-10 max-w-2xl mx-auto leading-relaxed">
-          Los 7 cuentos clásicos adaptados con el nombre de tu hijo/a como protagonista.{' '}
-          <strong className="text-white/90">Gratis para siempre.</strong>
-          {' '}Y con un cuento personalizado de regalo para que veas la magia. ✨
+          {settings.hero_subtitle || 'Los 7 cuentos clásicos adaptados con el nombre de tu hijo/a como protagonista. Gratis para siempre. Y con un cuento personalizado de regalo. ✨'}
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -392,8 +396,7 @@ export default function LandingPage() {
       <footer className="relative z-10 text-center px-6 py-12 border-t border-white/10">
         <p className="text-4xl mb-3">🌙</p>
         <p className="text-white/50 text-base font-bold">
-          Para todas las noches de &quot;un cuento más, papi&quot;.{' '}
-          <span className="text-pink-400">Con amor.</span>
+          {settings.footer_tagline || 'Para todas las noches de "un cuento más, papi". Con amor.'}
         </p>
         <p className="text-white/30 text-xs mt-4 font-bold">
           © {new Date().getFullYear()} Mi Mundo Mágico · Hecho con ❤️ para padres y sus pequeños

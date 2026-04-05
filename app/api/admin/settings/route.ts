@@ -5,8 +5,12 @@ const ADMIN_EMAILS = ['legal@mimundomagico.es', 'javierpatoprieto@gmail.com']
 
 async function isAdmin(req: NextRequest): Promise<boolean> {
   try {
-    const authHeader = req.headers.get('x-admin-email')
-    if (authHeader && ADMIN_EMAILS.includes(authHeader)) return true
+    // Check custom header (from admin panel client)
+    const emailHeader = req.headers.get('x-admin-email')
+    if (emailHeader && ADMIN_EMAILS.includes(emailHeader)) return true
+    // Also allow service role (server-to-server)
+    const authHeader = req.headers.get('authorization')
+    if (authHeader?.includes('service_role')) return true
     return false
   } catch {
     return false
