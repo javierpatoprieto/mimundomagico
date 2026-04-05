@@ -71,33 +71,12 @@ export default function AdminPage() {
   }, [router])
 
   const loadUsers = async () => {
-    // Load profiles
-    const { data: profiles } = await supabase
-      .from('profiles')
-      .select('id, email, is_premium, ai_trial_used, created_at, stripe_customer_id')
-      .order('created_at', { ascending: false })
-
-    // Load child counts
-    const { data: children } = await supabase
-      .from('child_profiles')
-      .select('user_id')
-
-    // Load story counts
-    const { data: userStories } = await supabase
-      .from('user_stories')
-      .select('user_id')
-
-    const childMap: Record<string, number> = {}
-    for (const c of children || []) childMap[c.user_id] = (childMap[c.user_id] || 0) + 1
-
-    const storyMap: Record<string, number> = {}
-    for (const s of userStories || []) storyMap[s.user_id] = (storyMap[s.user_id] || 0) + 1
-
-    setUsers((profiles || []).map(p => ({
-      ...p,
-      child_count: childMap[p.id] || 0,
-      stories_count: storyMap[p.id] || 0,
-    })))
+    const auth = await getAuthHeader()
+    const res = await fetch('/api/admin/users', {
+      headers: { 'Authorization': auth }
+    })
+    const data = await res.json()
+    setUsers(data.users || [])
     setUsersLoaded(true)
   }
 
