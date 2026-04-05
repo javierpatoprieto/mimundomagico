@@ -146,7 +146,7 @@ async function preGenerateClassicAudio(
 
       const text = story.content_template
         .replace(/\{childName\}/g, child.name)
-        .replace(/[\u{1F000}-\u{1FFFF}]/gu, '')
+        .replace(/[^\x00-\xFF]/g, '')
         .substring(0, 4500)
 
       const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://mimundomagico.es'
