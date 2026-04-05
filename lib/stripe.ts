@@ -1,7 +1,7 @@
 import Stripe from 'stripe'
 
 export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2026-03-25.dahlia' as const,
+  apiVersion: '2024-12-18.acacia' as const,
 })
 
 export const PREMIUM_PRICE_ID = process.env.STRIPE_PREMIUM_PRICE_ID!
@@ -26,7 +26,7 @@ export async function createCheckoutSession({
       },
     ],
     mode: 'subscription',
-    success_url: `${process.env.NEXT_PUBLIC_APP_URL}/dashboard?premium=success`,
+    success_url: `${process.env.NEXT_PUBLIC_APP_URL}/library?premium=success`,
     cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/premium?cancelled=true`,
     metadata: {
       userId,
