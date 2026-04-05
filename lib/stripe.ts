@@ -26,7 +26,7 @@ export async function createCheckoutSession({
       },
     ],
     mode: 'subscription',
-    success_url: `${process.env.NEXT_PUBLIC_APP_URL}/library?premium=success`,
+    success_url: `${process.env.NEXT_PUBLIC_APP_URL}/premium/success`,
     cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/premium?cancelled=true`,
     metadata: {
       userId,
