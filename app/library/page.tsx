@@ -84,8 +84,8 @@ function LibraryContent() {
         .eq('child_profile_id', selectedChild)
 
       const aiList: AiStory[] = (aiUs || [])
-        .filter((row: any) => row.stories?.is_ai_generated)
-        .map((row: any) => ({
+        .filter((row: {stories?: {is_ai_generated?: boolean}}) => row.stories?.is_ai_generated)
+        .map((row: {id: string; is_favorite: boolean; progress: number; audio_url: string | null; stories: {id: string; title: string; cover_emoji: string; theme: string; created_at: string}}) => ({
           id: row.stories.id,
           title: row.stories.title,
           cover_emoji: row.stories.cover_emoji,
@@ -117,14 +117,6 @@ function LibraryContent() {
     }
   }
 
-  const toggleAiFavorite = async (storyId: string) => {
-    if (!user?.id) return
-    const story = aiStories.find((s) => s.id === storyId)
-    if (!story) return
-    const newFav = !story.is_favorite
-    await supabase.from('user_stories').update({ is_favorite: newFav }).eq('id', story.userStoryId)
-    setAiStories((prev) => prev.map((s) => s.id === storyId ? { ...s, is_favorite: newFav } : s))
-  }
 
   const activeChild = childProfiles.find((p) => p.id === selectedChild)
   const canUseAI = profile?.is_premium || !profile?.ai_trial_used
