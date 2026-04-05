@@ -31,6 +31,9 @@ export async function POST(req: NextRequest) {
             stripe_customer_id: session.customer as string,
           })
           .eq('id', userId)
+
+        // Pre-generate audio for classic stories in background (fire and forget)
+        preGenerateClassicAudio(userId, supabaseAdmin).catch(console.error)
       }
       break
     }
@@ -67,4 +70,96 @@ export async function POST(req: NextRequest) {
   }
 
   return NextResponse.json({ received: true })
+}
+
+// Pre-generate audio for all classic stories when user goes Premium
+async function preGenerateClassicAudio(
+  userId: string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  supabaseAdmin: any
+) {
+  const CLASSIC_STORY_IDS = [
+    '00000000-0000-0000-0000-000000000001',
+    '00000000-0000-0000-0000-000000000002',
+    '00000000-0000-0000-0000-000000000003',
+    '00000000-0000-0000-0000-000000000004',
+    '00000000-0000-0000-0000-000000000005',
+    '00000000-0000-0000-0000-000000000006',
+    '00000000-0000-0000-0000-000000000007',
+  ]
+
+  // Get child profile
+  const { data: childProfiles } = await supabaseAdmin
+    .from('child_profiles')
+    .select('id, name')
+    .eq('user_id', userId)
+    .limit(1)
+
+  if (!childProfiles?.length) return
+  const child = childProfiles[0]
+
+  for (const storyId of CLASSIC_STORY_IDS) {
+    try {
+      // Get or create user_story
+      const { data: existing } = await supabaseAdmin
+        .from('user_stories')
+        .select('id, audio_url')
+        .eq('user_id', userId)
+        .eq('story_id', storyId)
+        .maybeSingle()
+
+      if (existing?.audio_url) continue // already has audio
+
+      let userStoryId = existing?.id
+
+      if (!userStoryId) {
+        const { data: story } = await supabaseAdmin
+          .from('stories')
+          .select('content_template')
+          .eq('id', storyId)
+          .single()
+
+        const { data: created } = await supabaseAdmin
+          .from('user_stories')
+          .insert({
+            user_id: userId,
+            child_profile_id: child.id,
+            story_id: storyId,
+            custom_content: (story?.content_template || '').replace(/\{childName\}/g, child.name),
+          })
+          .select('id')
+          .single()
+
+        userStoryId = created?.id
+      }
+
+      if (!userStoryId) continue
+
+      // Call narrate API
+      const { data: story } = await supabaseAdmin
+        .from('stories')
+        .select('content_template')
+        .eq('id', storyId)
+        .single()
+
+      if (!story?.content_template) continue
+
+      const text = story.content_template
+        .replace(/\{childName\}/g, child.name)
+        .replace(/[\u{1F000}-\u{1FFFF}]/gu, '')
+        .substring(0, 4500)
+
+      const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://mimundomagico.es'
+      await fetch(`${appUrl}/api/stories/narrate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userStoryId, text }),
+      })
+
+      // Small delay between requests to avoid rate limits
+      await new Promise(r => setTimeout(r, 2000))
+    } catch (err) {
+      console.error(`[webhook] audio pre-gen error for story ${storyId}:`, err)
+    }
+  }
 }

@@ -209,10 +209,10 @@ function AudioControls({
         ) : (
           <div>
             <p className="text-sm font-black opacity-80">
-              {locked ? '🔒 Narración Premium' : isGenerating ? '🎙️ Generando audio...' : '🔊 Narración de voz'}
+              {locked ? '🔒 Narración Premium' : isGenerating ? 'Preparando la narración...' : '🔊 Narración de voz'}
             </p>
             <p className="text-xs opacity-50 leading-tight font-bold">
-              {locked ? 'Hazte Premium para escuchar' : isGenerating ? 'ElevenLabs está narrando el cuento ✨' : 'Se generará automáticamente'}
+              {locked ? 'Hazte Premium para escuchar' : isGenerating ? 'Grabando el cuento en voz alta 🎙️ ✨ (10-15 seg)' : 'Se generará al abrir el cuento'}
             </p>
           </div>
         )}
