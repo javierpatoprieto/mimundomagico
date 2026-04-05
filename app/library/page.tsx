@@ -83,9 +83,12 @@ function LibraryContent() {
         .eq('user_id', user.id)
         .eq('child_profile_id', selectedChild)
 
-      const aiList: AiStory[] = (aiUs || [])
-        .filter((row: {stories?: {is_ai_generated?: boolean}}) => row.stories?.is_ai_generated)
-        .map((row: {id: string; is_favorite: boolean; progress: number; audio_url: string | null; stories: {id: string; title: string; cover_emoji: string; theme: string; created_at: string}}) => ({
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const aiList: AiStory[] = (aiUs || [] as any[])
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        .filter((row: any) => row.stories?.is_ai_generated)
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        .map((row: any) => ({
           id: row.stories.id,
           title: row.stories.title,
           cover_emoji: row.stories.cover_emoji,
