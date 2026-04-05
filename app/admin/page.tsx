@@ -52,7 +52,7 @@ export default function AdminPage() {
   const [settings, setSettings] = useState<SiteSetting[]>([])
   const [saving, setSaving] = useState<string | null>(null)
   const [saved, setSaved] = useState<string | null>(null)
-  const [userEmail, setUserEmail] = useState('')
+  const [, setUserEmail] = useState('')
   const [userSearch, setUserSearch] = useState('')
 
   useEffect(() => {
