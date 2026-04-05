@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/Button'
 export default function PremiumSuccessPage() {
   const router = useRouter()
   const [checking, setChecking] = useState(true)
-  const [isPremium, setIsPremium] = useState(false)
+  const [, setIsPremium] = useState(false)
 
   useEffect(() => {
     // Wait a bit for webhook to process, then check
