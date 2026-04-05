@@ -54,7 +54,9 @@ function LibraryContent() {
   }, [authLoading, user, router])
 
   useEffect(() => {
-    if (searchParams.get('premium') === 'success') setPremiumSuccess(true)
+    try {
+      if (searchParams.get('premium') === 'success') setPremiumSuccess(true)
+    } catch { /* ignore */ }
   }, [searchParams])
 
   useEffect(() => {
