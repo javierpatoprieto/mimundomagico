@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 export const dynamic = 'force-dynamic'
 
@@ -33,7 +33,7 @@ const PREMIUM_FEATURES = [
     title: 'Narración en audio 🔊',
     desc: 'El cuento se lee solo en voz alta. Para las noches de "un cuento más, papi".',
     emoji: '🔊',
-    soon: true,
+    
   },
   {
     icon: <BookOpen size={24} className="text-blue-400" />,
@@ -71,7 +71,7 @@ const COMPARISON = [
   { feature: 'Mejor amigo en la historia', free: false, premium: true },
   { feature: 'Mascota como personaje', free: false, premium: true },
   { feature: 'Comida favorita en la aventura', free: false, premium: true },
-  { feature: 'Narración en audio 🔊 (Fase 2)', free: false, premium: true },
+  { feature: 'Narración en audio 🔊 (Premium)', free: false, premium: true },
   { feature: 'Nuevos cuentos cada semana', free: false, premium: true },
   { feature: 'Sin publicidad nunca', free: false, premium: true },
 ]
@@ -188,7 +188,7 @@ function PremiumContent() {
                     {f.icon}
                   </div>
                   {f.soon && (
-                    <span className="text-xs font-black bg-pink-400/20 text-pink-300 border border-pink-400/20 px-2 py-0.5 rounded-full">Fase 2</span>
+                    <span className="text-xs font-black bg-pink-400/20 text-pink-300 border border-pink-400/20 px-2 py-0.5 rounded-full">Premium</span>
                   )}
                 </div>
                 <h3 className="font-black text-white font-display text-lg mb-2">{f.title}</h3>
@@ -222,7 +222,7 @@ function PremiumContent() {
             <div className="text-center">
               <Button variant="premium" size="xl" loading={checkoutLoading} onClick={handleCheckout} className="shadow-2xl shadow-amber-400/20 font-black text-xl px-10 py-6">
                 <Star size={22} fill="currentColor" />
-                Empieza Premium — $4,99/mes
+                Empieza Premium — 2,99€/mes
               </Button>
               <p className="text-white/40 text-sm mt-4 font-bold">Sin compromiso · Cancela en 1 clic · Reembolso 7 días</p>
             </div>
