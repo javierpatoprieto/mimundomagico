@@ -181,15 +181,13 @@ function PremiumContent() {
           {/* Features grid */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
             {PREMIUM_FEATURES.map((f) => (
-              <div key={f.title} className={cn('glass rounded-3xl p-6 hover:-translate-y-1 transition-all', f.soon && 'border border-pink-400/20')}>
+              <div key={f.title} className="glass rounded-3xl p-6 hover:-translate-y-1 transition-all">
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-3">
                     <span className="text-3xl">{f.emoji}</span>
                     {f.icon}
                   </div>
-                  {f.soon && (
-                    <span className="text-xs font-black bg-pink-400/20 text-pink-300 border border-pink-400/20 px-2 py-0.5 rounded-full">Premium</span>
-                  )}
+
                 </div>
                 <h3 className="font-black text-white font-display text-lg mb-2">{f.title}</h3>
                 <p className="text-white/60 text-sm leading-relaxed font-bold">{f.desc}</p>
