@@ -28,7 +28,18 @@ interface Stats {
   newUsersWeek: number
 }
 
-type AdminTab = 'stats' | 'landing' | 'pricing' | 'promo' | 'general'
+type AdminTab = 'stats' | 'users' | 'landing' | 'pricing' | 'promo' | 'general'
+
+interface UserRow {
+  id: string
+  email: string
+  is_premium: boolean
+  ai_trial_used: boolean
+  created_at: string
+  stripe_customer_id: string | null
+  child_count: number
+  stories_count: number
+}
 
 export default function AdminPage() {
   const router = useRouter()
@@ -36,10 +47,13 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(true)
   const [activeTab, setActiveTab] = useState<AdminTab>('stats')
   const [stats, setStats] = useState<Stats | null>(null)
+  const [users, setUsers] = useState<UserRow[]>([])
+  const [usersLoaded, setUsersLoaded] = useState(false)
   const [settings, setSettings] = useState<SiteSetting[]>([])
   const [saving, setSaving] = useState<string | null>(null)
   const [saved, setSaved] = useState<string | null>(null)
   const [userEmail, setUserEmail] = useState('')
+  const [userSearch, setUserSearch] = useState('')
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
@@ -54,6 +68,37 @@ export default function AdminPage() {
       loadSettings(email)
     })
   }, [router])
+
+  const loadUsers = async () => {
+    // Load profiles
+    const { data: profiles } = await supabase
+      .from('profiles')
+      .select('id, email, is_premium, ai_trial_used, created_at, stripe_customer_id')
+      .order('created_at', { ascending: false })
+
+    // Load child counts
+    const { data: children } = await supabase
+      .from('child_profiles')
+      .select('user_id')
+
+    // Load story counts
+    const { data: userStories } = await supabase
+      .from('user_stories')
+      .select('user_id')
+
+    const childMap: Record<string, number> = {}
+    for (const c of children || []) childMap[c.user_id] = (childMap[c.user_id] || 0) + 1
+
+    const storyMap: Record<string, number> = {}
+    for (const s of userStories || []) storyMap[s.user_id] = (storyMap[s.user_id] || 0) + 1
+
+    setUsers((profiles || []).map(p => ({
+      ...p,
+      child_count: childMap[p.id] || 0,
+      stories_count: storyMap[p.id] || 0,
+    })))
+    setUsersLoaded(true)
+  }
 
   const loadStats = async () => {
     const { data: profiles } = await supabase.from('profiles').select('id, is_premium, created_at')
@@ -94,6 +139,11 @@ export default function AdminPage() {
     setTimeout(() => setSaved(null), 2000)
   }
 
+  // Load users when tab is opened
+  useEffect(() => {
+    if (activeTab === 'users' && !usersLoaded && authorized) loadUsers()
+  }, [activeTab, authorized])
+
   const handleSignOut = async () => {
     await supabase.auth.signOut()
     router.push('/')
@@ -120,6 +170,7 @@ export default function AdminPage() {
 
   const tabs: { key: AdminTab; label: string; icon: React.ReactNode }[] = [
     { key: 'stats', label: 'Estadísticas', icon: <TrendingUp size={16} /> },
+    { key: 'users', label: `Usuarios (${stats?.totalUsers ?? 0})`, icon: <Users size={16} /> },
     { key: 'landing', label: 'Landing', icon: <Layout size={16} /> },
     { key: 'pricing', label: 'Precios', icon: <Tag size={16} /> },
     { key: 'promo', label: 'Promociones', icon: <Megaphone size={16} /> },
@@ -206,8 +257,100 @@ export default function AdminPage() {
           </div>
         )}
 
+        {/* USERS TAB */}
+        {activeTab === 'users' && (
+          <div>
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="font-black text-xl">👥 Usuarios registrados</h2>
+              <button onClick={() => { setUsersLoaded(false); loadUsers() }}
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-sm font-bold transition-colors">
+                <RefreshCw size={14} />Actualizar
+              </button>
+            </div>
+
+            {/* Search */}
+            <input
+              type="text"
+              placeholder="Buscar por email..."
+              value={userSearch}
+              onChange={e => setUserSearch(e.target.value)}
+              className="w-full mb-4 px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-violet-400 text-sm"
+            />
+
+            {/* Stats row */}
+            <div className="flex gap-4 mb-6">
+              <div className="bg-violet-500/20 rounded-xl px-4 py-2 text-sm">
+                <span className="font-black text-violet-300">{users.length}</span>
+                <span className="text-white/50 ml-2">total</span>
+              </div>
+              <div className="bg-amber-500/20 rounded-xl px-4 py-2 text-sm">
+                <span className="font-black text-amber-300">{users.filter(u => u.is_premium).length}</span>
+                <span className="text-white/50 ml-2">premium</span>
+              </div>
+              <div className="bg-green-500/20 rounded-xl px-4 py-2 text-sm">
+                <span className="font-black text-green-300">
+                  {users.length > 0 ? ((users.filter(u => u.is_premium).length / users.length) * 100).toFixed(1) : 0}%
+                </span>
+                <span className="text-white/50 ml-2">conversión</span>
+              </div>
+              <div className="bg-pink-500/20 rounded-xl px-4 py-2 text-sm">
+                <span className="font-black text-pink-300">
+                  {(users.filter(u => u.is_premium).length * 2.99).toFixed(2)}€
+                </span>
+                <span className="text-white/50 ml-2">MRR</span>
+              </div>
+            </div>
+
+            {/* Table */}
+            <div className="bg-white/5 rounded-2xl border border-white/10 overflow-hidden">
+              <div className="grid grid-cols-12 text-xs font-black text-white/40 uppercase px-4 py-3 border-b border-white/10">
+                <span className="col-span-4">Email</span>
+                <span className="col-span-2">Plan</span>
+                <span className="col-span-2">Registro</span>
+                <span className="col-span-1 text-center">Hijos</span>
+                <span className="col-span-1 text-center">Cuentos</span>
+                <span className="col-span-2">IA trial</span>
+              </div>
+              {users
+                .filter(u => !userSearch || u.email?.toLowerCase().includes(userSearch.toLowerCase()))
+                .map((u, i) => (
+                  <div key={u.id} className={`grid grid-cols-12 items-center px-4 py-3 text-sm ${
+                    i % 2 === 0 ? '' : 'bg-white/5'
+                  } border-b border-white/5 last:border-0`}>
+                    <span className="col-span-4 text-white/70 font-mono text-xs truncate pr-2">
+                      {u.email || u.id.slice(0, 16) + '...'}
+                    </span>
+                    <span className="col-span-2">
+                      {u.is_premium
+                        ? <span className="bg-amber-500/20 text-amber-300 text-xs font-black px-2 py-1 rounded-lg">👑 PREMIUM</span>
+                        : <span className="bg-white/10 text-white/40 text-xs font-black px-2 py-1 rounded-lg">FREE</span>
+                      }
+                    </span>
+                    <span className="col-span-2 text-white/40 text-xs">
+                      {new Date(u.created_at).toLocaleDateString('es-ES')}
+                    </span>
+                    <span className="col-span-1 text-center text-white/60 font-black">{u.child_count}</span>
+                    <span className="col-span-1 text-center text-white/60 font-black">{u.stories_count}</span>
+                    <span className="col-span-2">
+                      {u.ai_trial_used
+                        ? <span className="text-purple-400 text-xs font-black">✓ Usada</span>
+                        : <span className="text-white/30 text-xs">Disponible</span>
+                      }
+                    </span>
+                  </div>
+                ))
+              }
+              {users.length === 0 && (
+                <div className="text-center py-12 text-white/30">
+                  <p className="font-black">Sin usuarios aún</p>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
         {/* SETTINGS TABS */}
-        {activeTab !== 'stats' && (
+        {activeTab !== 'stats' && activeTab !== 'users' && (
           <div className="space-y-4">
             <div className="flex items-center justify-between mb-6">
               <h2 className="font-black text-xl">
