@@ -4,6 +4,7 @@ import './globals.css'
 import { DemoBanner } from '@/components/DemoBanner'
 import { CookieBanner } from '@/components/CookieBanner'
 import { PWAInstallPrompt } from '@/components/PWAInstallPrompt'
+import { PromoBanner } from '@/components/PromoBanner'
 
 const nunito = Nunito({
   subsets: ['latin'],
@@ -52,6 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es" className={nunito.variable}>
       <body className="bg-white text-gray-900 antialiased">
+        <PromoBanner />
         <DemoBanner />
         <CookieBanner />
         <PWAInstallPrompt />
