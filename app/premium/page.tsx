@@ -89,7 +89,7 @@ function PremiumContent() {
   }, [searchParams])
 
   const handleCheckout = async () => {
-    if (!user) return router.push('/register')
+    if (!user) return router.push('/register?redirect=/premium')
     setCheckoutLoading(true)
     try {
       const res = await fetch('/api/stripe/checkout', {
@@ -97,9 +97,17 @@ function PremiumContent() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId: user.id, email: user.email }),
       })
+      if (!res.ok) {
+        const err = await res.json()
+        console.error('Checkout error:', err)
+        setCheckoutLoading(false)
+        return
+      }
       const { url } = await res.json()
       if (url) window.location.href = url
-    } catch {
+      else setCheckoutLoading(false)
+    } catch (e) {
+      console.error('Checkout exception:', e)
       setCheckoutLoading(false)
     }
   }
@@ -164,7 +172,7 @@ function PremiumContent() {
                 <Star size={14} fill="currentColor" /> PREMIUM
               </div>
               <div className="mb-6">
-                <span className="text-7xl font-black text-white font-display">$4<span className="text-4xl">,99</span></span>
+                <span className="text-7xl font-black text-white font-display">2<span className="text-4xl">,99€</span></span>
                 <span className="text-white/50 text-xl">/mes</span>
                 <p className="text-white/40 text-sm mt-2 font-bold">Cancela cuando quieras · Sin permanencia</p>
               </div>
