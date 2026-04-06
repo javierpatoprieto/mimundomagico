@@ -5,6 +5,7 @@ export const dynamic = 'force-dynamic'
 import { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useAuth, useProfile } from '@/lib/hooks/useAuth'
+import { supabase } from '@/lib/supabase'
 import { Navbar } from '@/components/Navbar'
 import { Button } from '@/components/ui/Button'
 import { FloatingStars } from '@/components/ui/Stars'
@@ -92,10 +93,20 @@ function PremiumContent() {
     if (!user) return router.push('/register?redirect=/premium')
     setCheckoutLoading(true)
     try {
+      // Get current session token to authenticate the API call
+      const { data: { session } } = await supabase.auth.getSession()
+      if (!session?.access_token) {
+        router.push('/login?redirect=/premium')
+        setCheckoutLoading(false)
+        return
+      }
       const res = await fetch('/api/stripe/checkout', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userId: user.id, email: user.email }),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${session.access_token}`,
+        },
+        body: JSON.stringify({ email: user.email }),
       })
       if (!res.ok) {
         const err = await res.json()
