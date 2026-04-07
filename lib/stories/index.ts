@@ -2508,8 +2508,24 @@ Y los dioses del Olimpo aplaudieron desde las nubes doradas del atardecer. ✨`,
 export const FREE_STORIES = CLASSIC_STORIES.filter((s) => !s.isPremium)
 export const PREMIUM_STORIES = CLASSIC_STORIES.filter((s) => s.isPremium)
 
-export function personalizeStory(template: string, childName: string): string {
-  return template.replace(/\{childName\}/g, childName)
+export function personalizeStory(template: string, childName: string, gender: 'niño' | 'niña' = 'niño'): string {
+  let result = template.replace(/\{childName\}/g, childName)
+
+  if (gender === 'niña') {
+    result = result
+      .replace(/\bel niño\b/gi, 'la niña')
+      .replace(/\bun niño\b/gi, 'una niña')
+      .replace(/\bnuestro héroe\b/gi, 'nuestra heroína')
+      .replace(/\bél era\b/gi, 'ella era')
+      .replace(/\bél tenía\b/gi, 'ella tenía')
+      .replace(/\bél fue\b/gi, 'ella fue')
+      .replace(/\bél se\b/gi, 'ella se')
+      .replace(/\bvaliente niño\b/gi, 'valiente niña')
+      .replace(/\bpequeño héroe\b/gi, 'pequeña heroína')
+      // protagonista is already neutral, keep as-is
+  }
+
+  return result
 }
 
 export function getStoryBySlug(slug: string): (ClassicStory & { template: string }) | undefined {

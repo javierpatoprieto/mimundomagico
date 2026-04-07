@@ -100,6 +100,7 @@ export interface ChildProfile {
   age: number | null
   avatar_emoji: string
   avatar_color: string
+  gender: 'niño' | 'niña'
   favorite_themes: string[]
   favorite_colors: string[]
   best_friend_name: string | null

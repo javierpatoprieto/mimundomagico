@@ -12,6 +12,7 @@ import { Sparkles } from 'lucide-react'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { isDemoMode, DEMO_STORY_ID } from '@/lib/demo'
+import { supabase } from '@/lib/supabase'
 import type { StoryCreationParams } from '@/lib/openai'
 
 // ─── Step config ────────────────────────────────────────────────────────────
@@ -437,9 +438,18 @@ export default function CreatePage() {
     }
 
     try {
+      const { data: { session } } = await supabase.auth.getSession()
+      if (!session?.access_token) {
+        router.push('/login?redirect=/create')
+        setGenerating(false)
+        return
+      }
       const res = await fetch('/api/stories/generate', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${session.access_token}`,
+        },
         body: JSON.stringify({
           ...params,
           userId: user?.id,

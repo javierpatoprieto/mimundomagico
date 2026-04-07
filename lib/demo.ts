@@ -22,6 +22,7 @@ export const DEMO_CHILD_PROFILE = {
   user_id: 'demo',
   name: 'David',
   age: 1,
+  gender: 'niño' as 'niño' | 'niña',
   avatar_emoji: '⭐',
   avatar_color: '#7c3aed',
   favorite_themes: ['dinosaurios', 'espacio'],
