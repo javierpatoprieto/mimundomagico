@@ -2509,21 +2509,46 @@ export const FREE_STORIES = CLASSIC_STORIES.filter((s) => !s.isPremium)
 export const PREMIUM_STORIES = CLASSIC_STORIES.filter((s) => s.isPremium)
 
 export function personalizeStory(template: string, childName: string, gender: 'niño' | 'niña' = 'niño'): string {
-  let result = template.replace(/\{childName\}/g, childName)
+  const isNina = gender === 'niña'
 
-  if (gender === 'niña') {
-    result = result
-      .replace(/\bel niño\b/gi, 'la niña')
-      .replace(/\bun niño\b/gi, 'una niña')
-      .replace(/\bnuestro héroe\b/gi, 'nuestra heroína')
-      .replace(/\bél era\b/gi, 'ella era')
-      .replace(/\bél tenía\b/gi, 'ella tenía')
-      .replace(/\bél fue\b/gi, 'ella fue')
-      .replace(/\bél se\b/gi, 'ella se')
-      .replace(/\bvaliente niño\b/gi, 'valiente niña')
-      .replace(/\bpequeño héroe\b/gi, 'pequeña heroína')
-      // protagonista is already neutral, keep as-is
-  }
+  const result = template
+    // Name
+    .replace(/\{childName\}/g, childName)
+    // Gender markers: {niño/niña} → niño or niña
+    .replace(/\{niño\/niña\}/g, isNina ? 'niña' : 'niño')
+    .replace(/\{el\/la\}/g, isNina ? 'la' : 'el')
+    .replace(/\{un\/una\}/g, isNina ? 'una' : 'un')
+    .replace(/\{él\/ella\}/g, isNina ? 'ella' : 'él')
+    .replace(/\{lo\/la\}/g, isNina ? 'la' : 'lo')
+    .replace(/\{del\/de la\}/g, isNina ? 'de la' : 'del')
+    .replace(/\{al\/a la\}/g, isNina ? 'a la' : 'al')
+    .replace(/\{hero\/heroína\}/g, isNina ? 'heroína' : 'héroe')
+    .replace(/\{pequeño\/pequeña\}/g, isNina ? 'pequeña' : 'pequeño')
+    .replace(/\{listo\/lista\}/g, isNina ? 'lista' : 'listo')
+    .replace(/\{valiente\}/g, 'valiente') // neutral
+    // Gendered adjectives without markers (best-effort regex)
+    .replace(/\bel niño\b/gi, isNina ? 'la niña' : 'el niño')
+    .replace(/\bun niño\b/gi, isNina ? 'una niña' : 'un niño')
+    .replace(/\bnuestro héroe\b/gi, isNina ? 'nuestra heroína' : 'nuestro héroe')
+    .replace(/\bpequeño héroe\b/gi, isNina ? 'pequeña heroína' : 'pequeño héroe')
+    .replace(/\bvaliente niño\b/gi, isNina ? 'valiente niña' : 'valiente niño')
+    // Pronouns (only when clearly standalone)
+    .replace(/\bÉl era\b/g, isNina ? 'Ella era' : 'Él era')
+    .replace(/\bél era\b/g, isNina ? 'ella era' : 'él era')
+    .replace(/\bÉl tenía\b/g, isNina ? 'Ella tenía' : 'Él tenía')
+    .replace(/\bél tenía\b/g, isNina ? 'ella tenía' : 'él tenía')
+    .replace(/\bÉl fue\b/g, isNina ? 'Ella fue' : 'Él fue')
+    .replace(/\bél fue\b/g, isNina ? 'ella fue' : 'él fue')
+    .replace(/\bÉl se\b/g, isNina ? 'Ella se' : 'Él se')
+    .replace(/\bél se\b/g, isNina ? 'ella se' : 'él se')
+    .replace(/\bÉl tenía\b/g, isNina ? 'Ella tenía' : 'Él tenía')
+    // Common story phrases
+    .replace(/\bla más valiente\b/gi, isNina ? 'la más valiente' : 'el más valiente')
+    .replace(/\bla niña más\b/gi, isNina ? 'la niña más' : 'el niño más')
+    .replace(/\bel niño más\b/gi, isNina ? 'la niña más' : 'el niño más')
+    // Fix: if template is written in feminine (like Caperucita) and child is a boy
+    .replace(/\bla pequeña\b/gi, isNina ? 'la pequeña' : 'el pequeño')
+    .replace(/\bla valiente\b/gi, isNina ? 'la valiente' : 'el valiente')
 
   return result
 }
