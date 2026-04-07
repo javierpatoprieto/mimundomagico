@@ -156,17 +156,21 @@ function StoryContent() {
     if (!text) return
 
     setGeneratingAudio(true)
-    fetch('/api/stories/narrate', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ userStoryId, text }),
-    })
-      .then((r) => r.json())
-      .then((data) => {
-        if (data.audioUrl) setAudioUrl(data.audioUrl)
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!session?.access_token) { setGeneratingAudio(false); return }
+      fetch('/api/stories/narrate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${session.access_token}`,
+        },
+        body: JSON.stringify({ userStoryId, text }),
       })
+      .then((r) => r.json())
+      .then((data) => { if (data.audioUrl) setAudioUrl(data.audioUrl) })
       .catch(console.error)
       .finally(() => setGeneratingAudio(false))
+    })
   }, [profile?.is_premium, userStoryId, audioUrl, aiContent, story, activeChild])
 
   const isLoading = authLoading || loadingAi || (!story && isAiStory && !aiContent) || !activeChild
