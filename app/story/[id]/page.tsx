@@ -75,15 +75,21 @@ function StoryContent() {
 
     if (!user?.id || !activeChild) return
 
-    // For classic stories
+    // For classic stories — use slug-based lookup (story_id is null for static stories)
     if (story) {
       const fetchOrCreate = async () => {
+        const slug = story.slug
+        const childName = activeChild.name
+        const gender = (activeChild as { gender?: string }).gender as 'niño' | 'niña' | undefined
+        const personalizedContent = personalizeStory(story.template, childName, gender)
+
+        // Look up by slug stored in custom_content metadata (no FK needed)
         const { data: existing } = await supabase
           .from('user_stories')
           .select('id, is_favorite, audio_url')
           .eq('user_id', user.id)
-          .eq('story_id', story.id)
           .eq('child_profile_id', activeChild.id)
+          .eq('classic_story_slug', slug)
           .single()
 
         if (existing) {
@@ -91,17 +97,20 @@ function StoryContent() {
           setUserStoryId(existing.id)
           setAudioUrl(existing.audio_url)
         } else {
-          const { data: created } = await supabase
+          // Insert without story_id FK — use classic_story_slug instead
+          const { data: created, error: createErr } = await supabase
             .from('user_stories')
             .insert({
               user_id: user.id,
               child_profile_id: activeChild.id,
-              story_id: story.id,
-              custom_content: personalizeStory(story.template, activeChild.name),
+              story_id: null,
+              classic_story_slug: slug,
+              custom_content: personalizedContent,
             })
             .select('id')
             .single()
 
+          if (createErr) console.error('[story] create user_story error:', createErr)
           if (created) setUserStoryId(created.id)
         }
       }
