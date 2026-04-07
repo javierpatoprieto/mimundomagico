@@ -7,7 +7,8 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { useAuth, useProfile, useChildProfiles } from '@/lib/hooks/useAuth'
 import { supabase } from '@/lib/supabase'
 import { StoryCard } from '@/components/StoryCard'
-import { ChildProfileForm } from '@/components/ChildProfile'
+import { ChildProfileForm, ChildProfileCard, DeleteConfirmDialog } from '@/components/ChildProfile'
+import type { ChildProfile } from '@/lib/hooks/useAuth'
 import { Navbar } from '@/components/Navbar'
 import { Button } from '@/components/ui/Button'
 import { CLASSIC_STORIES } from '@/lib/stories'
@@ -44,6 +45,9 @@ function LibraryContent() {
 
   const [selectedChild, setSelectedChild] = useState<string | null>(null)
   const [showCreateChild, setShowCreateChild] = useState(false)
+  const [editingChild, setEditingChild] = useState<ChildProfile | null>(null)
+  const [deletingChild, setDeletingChild] = useState<ChildProfile | null>(null)
+  const [deleteLoading, setDeleteLoading] = useState(false)
   const [userStories, setUserStories] = useState<UserStoryRow[]>([])
   const [aiStories, setAiStories] = useState<AiStory[]>([])
   const [activeTab, setActiveTab] = useState<'classics' | 'personalized' | 'favorites'>('classics')
@@ -186,23 +190,14 @@ function LibraryContent() {
           {/* Child selector */}
           <div className="flex items-center gap-3 mb-8 flex-wrap">
             {childProfiles.map((child) => (
-              <button
+              <ChildProfileCard
                 key={child.id}
-                onClick={() => setSelectedChild(child.id)}
-                className={cn(
-                  'flex items-center gap-2 px-5 py-3 rounded-2xl border-3 transition-all tap-target',
-                  selectedChild === child.id
-                    ? 'border-violet-500 bg-violet-50 shadow-lg shadow-violet-200'
-                    : 'border-gray-200 bg-white hover:border-violet-300'
-                )}
-              >
-                <span className="w-9 h-9 rounded-full text-xl flex items-center justify-center shadow-sm" style={{ backgroundColor: child.avatar_color }}>
-                  {child.avatar_emoji}
-                </span>
-                <span className={cn('font-black text-base font-display', selectedChild === child.id ? 'text-violet-700' : 'text-gray-700')}>
-                  {child.name}
-                </span>
-              </button>
+                child={child}
+                isSelected={selectedChild === child.id}
+                onSelect={() => setSelectedChild(child.id)}
+                onEdit={() => setEditingChild(child)}
+                onDelete={() => setDeletingChild(child)}
+              />
             ))}
             <button
               onClick={() => setShowCreateChild(true)}
@@ -223,7 +218,9 @@ function LibraryContent() {
                   </div>
                   <div>
                     <p className="text-white/70 text-sm font-bold">Biblioteca mágica de</p>
-                    <h2 className="text-3xl font-black font-display">{activeChild.name} ✨</h2>
+                    <h2 className="text-3xl font-black font-display">
+                      {activeChild.gender === 'niña' ? '👧' : '👦'} {activeChild.name} ✨
+                    </h2>
                   </div>
                 </div>
                 <div className="flex gap-2">
@@ -441,6 +438,52 @@ function LibraryContent() {
 
         </div>
       </div>
+
+      {/* Edit child profile modal */}
+      {editingChild && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 py-8 overflow-y-auto">
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setEditingChild(null)} />
+          <div className="relative bg-white rounded-3xl shadow-2xl p-8 w-full max-w-lg border border-violet-100 my-auto">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-black text-gray-800">Editar perfil ✏️</h2>
+              <button
+                onClick={() => setEditingChild(null)}
+                className="text-gray-400 hover:text-gray-600 text-2xl font-bold leading-none"
+                aria-label="Cerrar"
+              >
+                ✕
+              </button>
+            </div>
+            <ChildProfileForm
+              userId={user!.id}
+              editProfile={editingChild}
+              onSuccess={() => { refetch(); setEditingChild(null) }}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Delete confirmation dialog */}
+      {deletingChild && (
+        <DeleteConfirmDialog
+          childName={deletingChild.name}
+          loading={deleteLoading}
+          onCancel={() => setDeletingChild(null)}
+          onConfirm={async () => {
+            setDeleteLoading(true)
+            const { error } = await supabase
+              .from('child_profiles')
+              .delete()
+              .eq('id', deletingChild.id)
+            setDeleteLoading(false)
+            if (!error) {
+              setDeletingChild(null)
+              if (selectedChild === deletingChild.id) setSelectedChild(null)
+              refetch()
+            }
+          }}
+        />
+      )}
     </>
   )
 }

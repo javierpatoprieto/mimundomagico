@@ -6,6 +6,7 @@ export interface StoryCreationParams {
   childName: string
   childDescription: string
   childMood: string
+  gender?: 'niño' | 'niña'
   char1Name?: string
   char1Role?: string
   char1Description?: string
@@ -30,6 +31,7 @@ export function buildStoryPrompt(params: StoryCreationParams): string {
     childName,
     childDescription,
     childMood,
+    gender = 'niño',
     char1Name,
     char1Role,
     char1Description,
@@ -75,6 +77,7 @@ export function buildStoryPrompt(params: StoryCreationParams): string {
   lines.push(``)
   lines.push(`**PROTAGONISTA:**`)
   lines.push(`- Nombre: ${childName}`)
+  lines.push(`- Género: ${gender === 'niña' ? 'niña (usar pronombres femeninos: ella, su, la)' : 'niño (usar pronombres masculinos: él, su, lo)'}`)
   lines.push(`- Personalidad y descripción: ${childDescription || `Es ${moodDescription}`}`)
   lines.push(`- Estado de ánimo principal: ${moodDescription}`)
 
@@ -166,6 +169,7 @@ export interface StoryGenerationParams {
   name: string
   age: number
   theme: string
+  gender?: 'niño' | 'niña'
   // preferences
   favoriteColors?: string[]
   bestFriendName?: string | null
@@ -180,6 +184,7 @@ export async function generateStory(params: StoryGenerationParams): Promise<stri
     name,
     age,
     theme,
+    gender = 'niño',
     favoriteColors,
     bestFriendName,
     petName,
@@ -199,7 +204,11 @@ export async function generateStory(params: StoryGenerationParams): Promise<stri
     ? `\n\nDETALLES PERSONALES - DEBES INCLUIR TODOS (no los omitas):\n${mandatory.join('\n')}`
     : ''
 
-  const prompt = `Escribe un cuento magico en espanol para ${name}, que tiene ${age} annos.\n\nTEMA: ${theme}\n\nPROTAGONISTA: ${name} es el heroe. Usa su nombre con frecuencia.${mandatoryBlock}\n\nINSTRUCCIONES:\n- Exactamente ~400 palabras\n- Parrafos cortos de 2-3 oraciones\n- Lenguaje simple y calido para ninos\n- Emojis ocasionales\n- Final feliz\n- Los nombres deben aparecer exactamente como se indican arriba\n\nESTRUCTURA:\n1. ${name} descubre algo magico relacionado con "${theme}"\n2. Comienza la aventura${bestFriendName ? ` junto a ${bestFriendName}` : ''}${petName ? ` y su mascota ${petName}` : ''}\n3. Se encuentran con un desafio o misterio\n4. Lo resuelven de forma ingeniosa\n5. Final feliz: ${name}${favoriteFood ? ` celebra comiendo ${favoriteFood}` : ' llega a casa contento'} y se duerme sonando con mas aventuras`
+  const genderLine = gender === 'niña'
+    ? `GÉNERO: niña (usar pronombres femeninos: ella, su, la)`
+    : `GÉNERO: niño (usar pronombres masculinos: él, su, lo)`
+
+  const prompt = `Escribe un cuento magico en espanol para ${name}, que tiene ${age} annos.\n\nTEMA: ${theme}\n\n${genderLine}\n\nPROTAGONISTA: ${name} es el heroe. Usa su nombre con frecuencia.${mandatoryBlock}\n\nINSTRUCCIONES:\n- Exactamente ~400 palabras\n- Parrafos cortos de 2-3 oraciones\n- Lenguaje simple y calido para ninos\n- Emojis ocasionales\n- Final feliz\n- Los nombres deben aparecer exactamente como se indican arriba\n\nESTRUCTURA:\n1. ${name} descubre algo magico relacionado con "${theme}"\n2. Comienza la aventura${bestFriendName ? ` junto a ${bestFriendName}` : ''}${petName ? ` y su mascota ${petName}` : ''}\n3. Se encuentran con un desafio o misterio\n4. Lo resuelven de forma ingeniosa\n5. Final feliz: ${name}${favoriteFood ? ` celebra comiendo ${favoriteFood}` : ' llega a casa contento'} y se duerme sonando con mas aventuras`
 
   const response = await openai.chat.completions.create({
     model: 'gpt-4o',

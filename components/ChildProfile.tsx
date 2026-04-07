@@ -4,6 +4,8 @@ import { useState } from 'react'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/Button'
 import { cn } from '@/lib/utils'
+import type { ChildProfile } from '@/lib/hooks/useAuth'
+import { Pencil, Trash2 } from 'lucide-react'
 
 const AVATAR_EMOJIS = ['⭐', '🌙', '🦄', '🐻', '🐰', '🦊', '🐼', '🦁', '🐶', '🐱', '🐸', '🦋', '🌈', '🍄', '🌸', '🚀']
 const AVATAR_COLORS = [
@@ -34,22 +36,34 @@ const THEME_OPTIONS = [
 
 const STEP_LABELS = ['¿Quién es?', 'Sus favoritos', '¡Sus amigos!']
 
+type Gender = 'niño' | 'niña'
+
+const GENDER_OPTIONS: { value: Gender; label: string; emoji: string }[] = [
+  { value: 'niño', label: 'Niño', emoji: '👦' },
+  { value: 'niña', label: 'Niña', emoji: '👧' },
+]
+
 interface ChildProfileFormProps {
   userId: string
   onSuccess: () => void
+  /** Pre-fill form for editing an existing profile */
+  editProfile?: ChildProfile
 }
 
-export function ChildProfileForm({ userId, onSuccess }: ChildProfileFormProps) {
+export function ChildProfileForm({ userId, onSuccess, editProfile }: ChildProfileFormProps) {
+  const isEditing = !!editProfile
+
   const [step, setStep] = useState(0)
-  const [name, setName] = useState('')
-  const [age, setAge] = useState<number>(4)
-  const [avatarEmoji, setAvatarEmoji] = useState('⭐')
-  const [avatarColor, setAvatarColor] = useState('#FFD700')
-  const [selectedThemes, setSelectedThemes] = useState<string[]>([])
-  const [favoriteColors, setFavoriteColors] = useState<string[]>([])
-  const [bestFriendName, setBestFriendName] = useState('')
-  const [petName, setPetName] = useState('')
-  const [favoriteFood, setFavoriteFood] = useState('')
+  const [name, setName] = useState(editProfile?.name ?? '')
+  const [age, setAge] = useState<number>(editProfile?.age ?? 4)
+  const [gender, setGender] = useState<Gender>((editProfile?.gender as Gender) ?? 'niño')
+  const [avatarEmoji, setAvatarEmoji] = useState(editProfile?.avatar_emoji ?? '⭐')
+  const [avatarColor, setAvatarColor] = useState(editProfile?.avatar_color ?? '#FFD700')
+  const [selectedThemes, setSelectedThemes] = useState<string[]>(editProfile?.favorite_themes ?? [])
+  const [favoriteColors, setFavoriteColors] = useState<string[]>(editProfile?.favorite_colors ?? [])
+  const [bestFriendName, setBestFriendName] = useState(editProfile?.best_friend_name ?? '')
+  const [petName, setPetName] = useState(editProfile?.pet_name ?? '')
+  const [favoriteFood, setFavoriteFood] = useState(editProfile?.favorite_food ?? '')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
@@ -80,10 +94,11 @@ export function ChildProfileForm({ userId, onSuccess }: ChildProfileFormProps) {
     setLoading(true)
     setError('')
 
-    const { error: dbError } = await supabase.from('child_profiles').insert({
+    const payload = {
       user_id: userId,
       name: name.trim(),
       age,
+      gender,
       avatar_emoji: avatarEmoji,
       avatar_color: avatarColor,
       favorite_themes: selectedThemes,
@@ -91,7 +106,19 @@ export function ChildProfileForm({ userId, onSuccess }: ChildProfileFormProps) {
       best_friend_name: bestFriendName.trim() || null,
       pet_name: petName.trim() || null,
       favorite_food: favoriteFood.trim() || null,
-    })
+    }
+
+    let dbError
+    if (isEditing) {
+      const { error: e } = await supabase
+        .from('child_profiles')
+        .update(payload)
+        .eq('id', editProfile.id)
+      dbError = e
+    } else {
+      const { error: e } = await supabase.from('child_profiles').insert(payload)
+      dbError = e
+    }
 
     if (dbError) {
       setError('Algo salió mal. Inténtalo de nuevo.')
@@ -125,7 +152,7 @@ export function ChildProfileForm({ userId, onSuccess }: ChildProfileFormProps) {
         ))}
       </div>
 
-      {/* STEP 0: Name, age, avatar */}
+      {/* STEP 0: Name, gender, age, avatar */}
       {step === 0 && (
         <div className="space-y-6">
           {/* Avatar preview */}
@@ -152,6 +179,34 @@ export function ChildProfileForm({ userId, onSuccess }: ChildProfileFormProps) {
               className="w-full px-5 py-4 rounded-2xl border-3 border-violet-200 focus:border-violet-500 focus:outline-none text-xl font-black font-display transition-colors bg-violet-50/50"
               style={{ fontSize: '1.25rem' }}
             />
+          </div>
+
+          {/* Gender */}
+          <div>
+            <label className="block text-base font-black text-gray-700 mb-3">
+              ¿Es un niño o una niña? 🌟
+            </label>
+            <div className="flex gap-4">
+              {GENDER_OPTIONS.map((opt) => (
+                <button
+                  key={opt.value}
+                  type="button"
+                  onClick={() => setGender(opt.value)}
+                  className={cn(
+                    'flex-1 flex flex-col items-center gap-2 py-4 rounded-2xl border-3 font-black text-sm transition-all tap-target',
+                    gender === opt.value
+                      ? 'border-violet-500 bg-violet-50 shadow-lg shadow-violet-200 scale-105 text-violet-700'
+                      : 'border-gray-200 bg-white hover:border-violet-300 text-gray-600'
+                  )}
+                >
+                  <span className="text-4xl">{opt.emoji}</span>
+                  <span>{opt.label}</span>
+                  {gender === opt.value && (
+                    <span className="text-xs bg-violet-600 text-white rounded-full px-2 py-0.5">✓</span>
+                  )}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Age */}
@@ -358,7 +413,7 @@ export function ChildProfileForm({ userId, onSuccess }: ChildProfileFormProps) {
               ← Atrás
             </Button>
             <Button type="button" onClick={handleSubmit} loading={loading} size="lg" className="flex-1 font-black text-base py-4">
-              🌟 ¡Empezar la magia!
+              {isEditing ? '✅ Guardar cambios' : '🌟 ¡Empezar la magia!'}
             </Button>
           </div>
         </div>
@@ -366,6 +421,107 @@ export function ChildProfileForm({ userId, onSuccess }: ChildProfileFormProps) {
     </div>
   )
 }
+
+// ─── ChildProfileCard — shows a profile chip with edit/delete buttons ─────────
+
+interface ChildProfileCardProps {
+  child: ChildProfile
+  isSelected: boolean
+  onSelect: () => void
+  onEdit: () => void
+  onDelete: () => void
+}
+
+export function ChildProfileCard({ child, isSelected, onSelect, onEdit, onDelete }: ChildProfileCardProps) {
+  const genderEmoji = child.gender === 'niña' ? '👧' : '👦'
+
+  return (
+    <div className={cn(
+      'flex items-center gap-2 px-4 py-2.5 rounded-2xl border-3 transition-all',
+      isSelected
+        ? 'border-violet-500 bg-violet-50 shadow-lg shadow-violet-200'
+        : 'border-gray-200 bg-white hover:border-violet-300'
+    )}>
+      {/* Main clickable area — select child */}
+      <button
+        onClick={onSelect}
+        className="flex items-center gap-2 flex-1 tap-target text-left"
+        aria-label={`Seleccionar perfil de ${child.name}`}
+      >
+        <span
+          className="w-9 h-9 rounded-full text-xl flex items-center justify-center shadow-sm flex-shrink-0"
+          style={{ backgroundColor: child.avatar_color }}
+        >
+          {child.avatar_emoji}
+        </span>
+        <span className={cn('font-black text-base font-display', isSelected ? 'text-violet-700' : 'text-gray-700')}>
+          {genderEmoji} {child.name}
+        </span>
+      </button>
+
+      {/* Edit / Delete buttons */}
+      <button
+        onClick={(e) => { e.stopPropagation(); onEdit() }}
+        className="p-1.5 rounded-xl text-gray-400 hover:text-violet-600 hover:bg-violet-100 transition-colors"
+        aria-label={`Editar perfil de ${child.name}`}
+        title="Editar"
+      >
+        <Pencil size={14} />
+      </button>
+      <button
+        onClick={(e) => { e.stopPropagation(); onDelete() }}
+        className="p-1.5 rounded-xl text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors"
+        aria-label={`Eliminar perfil de ${child.name}`}
+        title="Eliminar"
+      >
+        <Trash2 size={14} />
+      </button>
+    </div>
+  )
+}
+
+// ─── DeleteConfirmDialog ──────────────────────────────────────────────────────
+
+interface DeleteConfirmDialogProps {
+  childName: string
+  onConfirm: () => void
+  onCancel: () => void
+  loading?: boolean
+}
+
+export function DeleteConfirmDialog({ childName, onConfirm, onCancel, loading }: DeleteConfirmDialogProps) {
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
+      {/* Backdrop */}
+      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={onCancel} />
+      {/* Modal */}
+      <div className="relative bg-white rounded-3xl shadow-2xl p-8 max-w-sm w-full border border-red-100 animate-fade-in-up">
+        <div className="text-5xl text-center mb-4">🗑️</div>
+        <h3 className="text-xl font-black text-gray-800 text-center mb-3">¿Eliminar perfil?</h3>
+        <p className="text-gray-600 text-center text-sm leading-relaxed mb-6">
+          ¿Seguro que quieres eliminar el perfil de{' '}
+          <strong className="text-violet-700">{childName}</strong>?{' '}
+          Esta acción no se puede deshacer.
+        </p>
+        <div className="flex gap-3">
+          <Button type="button" variant="secondary" onClick={onCancel} className="flex-1" disabled={loading}>
+            Cancelar
+          </Button>
+          <Button
+            type="button"
+            onClick={onConfirm}
+            loading={loading}
+            className="flex-1 bg-red-500 hover:bg-red-600 border-red-500 font-black"
+          >
+            Sí, eliminar
+          </Button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// ─── ChildAvatar (unchanged, kept for backward compatibility) ─────────────────
 
 interface ChildAvatarProps {
   name: string
