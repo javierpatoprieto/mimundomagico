@@ -10,7 +10,10 @@ import { createClient } from '@supabase/supabase-js'
 import { getAuthenticatedUserId } from '@/lib/auth-server'
 import { rateLimit } from '@/lib/rate-limit'
 
-const VOICE_ID = process.env.ELEVENLABS_VOICE_ID ?? 'EXAVITQu4vr4xnSDxMaL' // Bella — warm, multilingual, free tier
+const VOICE_ID = process.env.ELEVENLABS_VOICE_ID ?? 'EXAVITQu4vr4xnSDxMaL' // Bella — warm, multilingual
+
+// Max duration for Vercel serverless function (seconds)
+export const maxDuration = 60
 
 async function generateWithElevenLabs(text: string): Promise<Buffer> {
   const res = await fetch(
@@ -24,11 +27,11 @@ async function generateWithElevenLabs(text: string): Promise<Buffer> {
       },
       body: JSON.stringify({
         text,
-        model_id: 'eleven_multilingual_v2',
+        model_id: 'eleven_turbo_v2_5', // Fastest model — 3-5x quicker than multilingual_v2
         voice_settings: {
-          stability: 0.70,
-          similarity_boost: 0.80,
-          style: 0.35,
+          stability: 0.65,
+          similarity_boost: 0.75,
+          style: 0.20,
           use_speaker_boost: true,
         },
       }),

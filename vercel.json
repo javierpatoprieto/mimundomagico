@@ -1,3 +1,11 @@
 {
-  "framework": "nextjs"
+  "framework": "nextjs",
+  "functions": {
+    "app/api/stories/narrate/route.ts": {
+      "maxDuration": 60
+    },
+    "app/api/stories/generate/route.ts": {
+      "maxDuration": 30
+    }
+  }
 }
