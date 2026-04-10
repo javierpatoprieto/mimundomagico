@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Fredoka+One&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Nunito', sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-gray-800 antialiased;
+  }
+
+  h1, h2, h3, .font-heading {
+    font-family: 'Fredoka One', cursive;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary-600 hover:bg-primary-700 active:bg-primary-800 text-white font-bold rounded-2xl transition-all duration-200 shadow-magic hover:shadow-lg hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-white hover:bg-primary-50 text-primary-600 font-bold rounded-2xl border-2 border-primary-600 transition-all duration-200 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 text-gray-600 hover:text-primary-600 hover:bg-primary-50 font-semibold rounded-xl transition-all duration-200 focus:outline-none;
+  }
+
+  .card {
+    @apply bg-white rounded-3xl shadow-card hover:shadow-card-hover transition-all duration-300 overflow-hidden;
+  }
+
+  .card-hover {
+    @apply hover:-translate-y-1;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-2xl text-gray-800 font-medium placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-100 transition-all duration-200;
+  }
+
+  .label {
+    @apply block text-sm font-bold text-gray-700 mb-2;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-sm font-semibold cursor-pointer transition-all duration-200 select-none;
+  }
+
+  .chip-inactive {
+    @apply chip bg-gray-100 text-gray-600 hover:bg-primary-100 hover:text-primary-700;
+  }
+
+  .chip-active {
+    @apply chip bg-primary-600 text-white shadow-sm;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-heading text-gray-900 leading-tight;
+  }
+
+  .section-subtitle {
+    @apply text-lg text-gray-600 leading-relaxed;
+  }
+
+  .magic-text {
+    @apply bg-gradient-to-r from-primary-600 to-magic-pink bg-clip-text text-transparent;
+  }
+}
+
+@layer utilities {
+  .animation-delay-200 { animation-delay: 200ms; }
+  .animation-delay-400 { animation-delay: 400ms; }
+  .animation-delay-600 { animation-delay: 600ms; }
+  .animation-delay-800 { animation-delay: 800ms; }
+  .animation-delay-1000 { animation-delay: 1000ms; }
+
+  .text-balance { text-wrap: balance; }
+}
+
+/* Star particles */
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: #FCD34D;
+  animation: twinkle 2s ease-in-out infinite;
+}
+
+/* Story reading mode */
+.story-content {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.125rem;
+  line-height: 2;
+  color: #374151;
+}
+
+.story-content p {
+  margin-bottom: 1.5rem;
+}
+
+/* Dark / night mode for story reading */
+.night-mode {
+  background: linear-gradient(180deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+  color: #FEF3C7;
+}
+
+.night-mode .story-content {
+  color: #FDE68A;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C4B5FD;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7C3AED;
+}
