@@ -1,0 +1,10 @@
+<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="1024" height="1024">
+  <!-- Purple Background -->
+  <rect width="1024" height="1024" fill="#4C1D95"/>
+
+  <!-- Star Icon - Large -->
+  <polygon points="512,200 546,380 740,380 594,510 649,690 512,560 375,690 430,510 284,380 478,380" fill="#FCD34D"/>
+
+  <!-- Text: Mi Mundo Mágico -->
+  <text x="512" y="840" font-family="system-ui, -apple-system, sans-serif" font-size="140" font-weight="700" fill="white" text-anchor="middle" letter-spacing="-1">Mi Mundo Mágico</text>
+</svg>
