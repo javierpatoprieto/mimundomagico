@@ -7,9 +7,16 @@ import OpenAI from 'openai'
 import { z } from 'zod'
 import { logOperation, logError } from './api-utils'
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-})
+let openai: OpenAI | null = null
+
+function getOpenAIClient(): OpenAI {
+  if (!openai) {
+    openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    })
+  }
+  return openai
+}
 
 /**
  * Validation schema for story generation input
@@ -20,7 +27,7 @@ const StoryGenerationInputSchema = z.object({
     .string()
     .min(1, 'Name is required')
     .max(100, 'Name is too long')
-    .regex(/^[\p{L}\p{N}\s\-']+$/u, 'Name can only contain letters, numbers, spaces, hyphens, and apostrophes'),
+    .regex(/^[a-zA-Z0-9\s\-'áéíóúàèìòùäëïöüñ]+$/, 'Name can only contain letters, numbers, spaces, hyphens, and apostrophes'),
   age: z.number().int().min(2, 'Age must be at least 2').max(10, 'Age must be at most 10'),
   interests: z
     .array(
@@ -28,7 +35,7 @@ const StoryGenerationInputSchema = z.object({
         .string()
         .min(1, 'Interest cannot be empty')
         .max(100, 'Interest is too long')
-        .regex(/^[\p{L}\p{N}\s\-]+$/u, 'Interests can only contain letters, numbers, spaces, and hyphens')
+        .regex(/^[a-zA-Z0-9\s\-áéíóúàèìòùäëïöüñ]+$/, 'Interests can only contain letters, numbers, spaces, and hyphens')
     )
     .min(1, 'At least one interest is required')
     .max(10, 'Too many interests'),
@@ -36,7 +43,7 @@ const StoryGenerationInputSchema = z.object({
     .string()
     .min(1, 'Theme is required')
     .max(50, 'Theme is too long')
-    .regex(/^[\p{L}\s\-]+$/u, 'Theme can only contain letters, spaces, and hyphens')
+    .regex(/^[a-zA-Z\s\-áéíóúàèìòùäëïöüñ]+$/, 'Theme can only contain letters, spaces, and hyphens')
     .optional()
     .default('adventure'),
 })
@@ -106,7 +113,7 @@ Responde en formato JSON con esta estructura:
 }`
 
   try {
-    const response = await openai.chat.completions.create({
+    const response = await getOpenAIClient().chat.completions.create({
       model: 'gpt-4o-mini',
       messages: [
         {

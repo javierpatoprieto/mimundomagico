@@ -25,7 +25,7 @@ const RequestBodySchema = z.object({
     .string()
     .min(1, 'Name is required')
     .max(100, 'Name is too long')
-    .regex(/^[\p{L}\p{N}\s\-']+$/u, 'Name contains invalid characters'),
+    .regex(/^[a-zA-Z0-9\s\-'áéíóúàèìòùäëïöüñ]+$/, 'Name contains invalid characters'),
   age: z.number().int().min(2, 'Age must be at least 2').max(10, 'Age must be at most 10'),
   interests: z
     .array(z.string().min(1).max(100))
